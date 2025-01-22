@@ -1,17 +1,19 @@
 import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 const Home = () => {
   return (
-    <Dropdown>
-      <Dropdown.Toggle variant="success" id="dropdown-basic">
-        Dropdown Button
-      </Dropdown.Toggle>
-
-      <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
+    <div className="container-fluid">
+      <div className="position-absolute top-0 start-0 p-5">
+        <DropdownButton
+          id="dropdown-basic-button"
+          title="Resources"
+          variant="secondary"
+        >
+          <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item>
+        </DropdownButton>
+      </div>
+    </div>
   );
 };
 export default Home;
