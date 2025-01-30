@@ -1,7 +1,20 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { Placeholder } from "react-bootstrap";
+import { useContext, useEffect } from "react";
+import { dataContext } from "../context/dataContext";
+
 const Home = () => {
+  const { getPosts, initialPostVal, setPostVal } = useContext(dataContext);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const postData = await getPosts(initialPostVal);
+      setPostVal(postData);
+    };
+    fetchData();
+  }, [getPosts, initialPostVal, setPostVal]);
+
   return (
     <div className="container-fluid vh-100">
       <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
