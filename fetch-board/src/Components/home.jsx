@@ -2,18 +2,28 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { Placeholder } from "react-bootstrap";
 import { useContext, useEffect } from "react";
-import { dataContext } from "../context/dataContext";
+import { MyContext } from "../context/dataContext";
 
 const Home = () => {
-  const { getPosts, initialPostVal, setPostVal } = useContext(dataContext);
+  const { getPosts, initialPostVal, setPostVal } = useContext(MyContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const postData = await getPosts(initialPostVal);
+      const postData = await getPosts();
       setPostVal(postData);
     };
     fetchData();
-  }, [getPosts, initialPostVal, setPostVal]);
+  }, []);
+
+  const displayPosts = () => {
+    return (
+      <div>
+        {initialPostVal?.data.posts?.map((post, index) => (
+          <div key={index}> {post.body} </div>
+        ))}
+      </div>
+    );
+  };
 
   return (
     <div className="container-fluid vh-100">
@@ -48,40 +58,13 @@ const Home = () => {
             <div className="col-12 main-content p-6">
               <div className="border border-6 p-3 mt-3">
                 <h3 className="text-decoration-underline">Posts and ToDos</h3>
+                <div>
+                  {initialPostVal?.data?.posts?.map((post, index) => (
+                    <div key={index}> {post.body}</div>
+                  ))}
+                </div>
               </div>
             </div>
-            {/* Pagination example */}
-            {/* <nav aria-label="Page navigation example">
-              <ul className="pagination">
-                <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                    <span className="sr-only">Previous</span>
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    1
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    2
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#">
-                    3
-                  </a>
-                </li>
-                <li className="page-item">
-                  <a className="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                    <span className="sr-only">Next</span>
-                  </a>
-                </li>
-              </ul>
-            </nav> */}
 
             {/* Another pagination */}
 

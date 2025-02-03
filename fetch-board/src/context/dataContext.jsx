@@ -15,7 +15,6 @@ import axios from "axios";
 const getPosts = async () => {
   try {
     const initialPostVal = await axios.get("https://dummyjson.com/posts");
-    console.log(initialPostVal);
     return initialPostVal;
   } catch (error) {
     console.log(error);
