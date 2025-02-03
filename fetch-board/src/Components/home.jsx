@@ -1,29 +1,18 @@
+import { useContext, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { Placeholder } from "react-bootstrap";
-import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 
 const Home = () => {
-  const { getPosts, initialPostVal, setPostVal } = useContext(MyContext);
+  const { initialPostVal, setPostVal, getPosts } = useContext(MyContext);
 
   useEffect(() => {
     const fetchData = async () => {
-      const postData = await getPosts();
-      setPostVal(postData);
+      const updatedData = await getPosts();
+      setPostVal(updatedData);
     };
     fetchData();
   }, []);
-
-  const displayPosts = () => {
-    return (
-      <div>
-        {initialPostVal?.data.posts?.map((post, index) => (
-          <div key={index}> {post.body} </div>
-        ))}
-      </div>
-    );
-  };
 
   return (
     <div className="container-fluid vh-100">
@@ -59,9 +48,10 @@ const Home = () => {
               <div className="border border-6 p-3 mt-3">
                 <h3 className="text-decoration-underline">Posts and ToDos</h3>
                 <div>
+                  {" "}
                   {initialPostVal?.data?.posts?.map((post, index) => (
-                    <div key={index}> {post.body}</div>
-                  ))}
+                    <div key={index}> {post.body} </div>
+                  ))}{" "}
                 </div>
               </div>
             </div>
