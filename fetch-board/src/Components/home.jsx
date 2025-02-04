@@ -19,6 +19,13 @@ const Home = () => {
   //   setValue(event.target.label);
   // }
   // --------------------------
+
+  //  for the purpose to show data
+
+  const handleSelect = (event) => {
+    console.log(event.target.value);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const updatedData = await getPosts();
@@ -39,8 +46,15 @@ const Home = () => {
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              // value={option.value}
-              onClick={() => setValue(option.label)}
+              value={option.value}
+              onClick={() => {
+                setValue(option.label);
+                {
+                  initialPostVal?.data?.posts?.map((post, index) => (
+                    <div key={index}>{post.body}</div>
+                  ));
+                }
+              }}
             >
               {option.label}
             </Dropdown.Item>
@@ -80,10 +94,10 @@ const Home = () => {
               <div className="border border-6 p-3 mt-3">
                 <h3 className="text-decoration-underline">Posts and ToDos</h3>
                 <div>
-                  {" "}
+                  {/* {" "}
                   {initialPostVal?.data?.posts?.map((post, index) => (
                     <div key={index}> {post.body} </div>
-                  ))}{" "}
+                  ))}{" "} */}
                 </div>
               </div>
             </div>
