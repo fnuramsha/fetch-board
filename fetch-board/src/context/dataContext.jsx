@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 
 const getPosts = async () => {
-  const newData = axios.get("https://dummyjson.com/posts");
+  const newData = axios.get("https://dummyjson.com/posts/");
   return newData;
 };
 

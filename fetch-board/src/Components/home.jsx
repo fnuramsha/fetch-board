@@ -10,7 +10,7 @@ const Home = () => {
   const [value, setValue] = useState("");
   const options = [
     { label: "Resources", value: 1 },
-    { label: "Posts", value: 2 },
+    { label: "Posts", value: 1 },
     { label: "ToDos", value: 3 },
   ];
 
@@ -20,12 +20,6 @@ const Home = () => {
   // }
   // --------------------------
 
-  //  for the purpose to show data
-
-  const handleSelect = (event) => {
-    console.log(event.target.value);
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const updatedData = await getPosts();
@@ -33,6 +27,26 @@ const Home = () => {
     };
     fetchData();
   }, []);
+
+  //  for the purpose to show data
+
+  const displayContent = () => {
+    if (value === "Posts") {
+      return (
+        <>
+          {initialPostVal?.data?.posts?.map((post, index) => (
+            <div key={index}> {post.body} </div>
+          ))}
+        </>
+      );
+    } else if (value === "ToDos") {
+      return (
+        <>
+          <h2>hi</h2>;
+        </>
+      );
+    }
+  };
 
   return (
     <div className="container-fluid vh-100">
@@ -49,11 +63,10 @@ const Home = () => {
               value={option.value}
               onClick={() => {
                 setValue(option.label);
-                {
-                  initialPostVal?.data?.posts?.map((post, index) => (
-                    <div key={index}>{post.body}</div>
-                  ));
-                }
+
+                // initialPostVal?.data?.posts?.map((post, index) => {
+
+                //   return <div key={index}>{post.body}</div>;
               }}
             >
               {option.label}
@@ -93,12 +106,7 @@ const Home = () => {
             <div className="col-12 main-content p-6">
               <div className="border border-6 p-3 mt-3">
                 <h3 className="text-decoration-underline">Posts and ToDos</h3>
-                <div>
-                  {/* {" "}
-                  {initialPostVal?.data?.posts?.map((post, index) => (
-                    <div key={index}> {post.body} </div>
-                  ))}{" "} */}
-                </div>
+                <div>{displayContent()}</div>
               </div>
             </div>
 
