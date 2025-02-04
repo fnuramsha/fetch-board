@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { MyContext } from "../context/dataContext";
@@ -6,6 +6,19 @@ import { MyContext } from "../context/dataContext";
 const Home = () => {
   const { initialPostVal, setPostVal, getPosts } = useContext(MyContext);
 
+  // Dropdown related stuff
+  const [value, setValue] = useState("");
+  const options = [
+    { label: "Resources", value: 1 },
+    { label: "Posts", value: 2 },
+    { label: "ToDos", value: 3 },
+  ];
+
+  // commented this code for future reference
+  // function handleSelect(event) {
+  //   setValue(event.target.label);
+  // }
+  // --------------------------
   useEffect(() => {
     const fetchData = async () => {
       const updatedData = await getPosts();
@@ -17,14 +30,33 @@ const Home = () => {
   return (
     <div className="container-fluid vh-100">
       <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
+        {/* Bootstrap dropdown */}
         <DropdownButton
           id="dropdown-basic-button"
-          title="Resources"
+          title={value || "Resources"}
           variant="secondary"
         >
-          <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item>
+          {options.map((option, index) => (
+            <Dropdown.Item
+              key={index}
+              // value={option.value}
+              onClick={() => setValue(option.label)}
+            >
+              {option.label}
+            </Dropdown.Item>
+          ))}
+          {/* <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item> */}
         </DropdownButton>
+
+        {/* Dropdown related stuff , Commented this code for future reference*/}
+        {/* <select className="form-select" onChange={handleSelect}>
+          {options.map((option, index) => (
+            <option key={index} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select> */}
         {/* for border */}
         <div className="col-10 main-content p-4">
           <div className="border border-3 p-3 mt-3">
