@@ -4,7 +4,14 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { MyContext } from "../context/dataContext";
 
 const Home = () => {
-  const { initialPostVal, setPostVal, getPosts } = useContext(MyContext);
+  const {
+    initialPostVal,
+    setPostVal,
+    getPosts,
+    initialToDosVal,
+    setToDosVal,
+    getToDos,
+  } = useContext(MyContext);
 
   // Dropdown related stuff
   const [value, setValue] = useState("");
@@ -28,6 +35,14 @@ const Home = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const fetchToDos = async () => {
+      const updatedToDos = await getToDos();
+      setToDosVal(updatedToDos);
+    };
+    fetchToDos();
+  }, []);
+
   //  for the purpose to show data
 
   const displayContent = () => {
@@ -42,7 +57,9 @@ const Home = () => {
     } else if (value === "ToDos") {
       return (
         <>
-          <h2>hi</h2>;
+          {initialToDosVal?.data?.todos?.map((todo, index) => (
+            <div key={index}> {todo.body} </div>
+          ))}
         </>
       );
     }
