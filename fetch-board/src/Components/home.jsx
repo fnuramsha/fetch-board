@@ -17,8 +17,8 @@ const Home = () => {
   const [value, setValue] = useState("");
   const options = [
     { label: "Resources", value: 1 },
-    { label: "Posts", value: 1 },
-    { label: "ToDos", value: 3 },
+    { label: "Posts", value: "Posts" },
+    { label: "ToDos", value: "ToDos" },
   ];
 
   // commented this code for future reference
@@ -38,6 +38,7 @@ const Home = () => {
   useEffect(() => {
     const fetchToDos = async () => {
       const updatedToDos = await getToDos();
+      // console.log("updatedTodos:", updatedToDos);
       setToDosVal(updatedToDos);
     };
     fetchToDos();
@@ -47,6 +48,7 @@ const Home = () => {
 
   const displayContent = () => {
     if (value === "Posts") {
+      // console.log("initialPostsVal:", initialPostVal);
       return (
         <>
           {initialPostVal?.data?.posts?.map((post, index) => (
@@ -55,11 +57,12 @@ const Home = () => {
         </>
       );
     } else if (value === "ToDos") {
+      console.log("ToDos Data from initialTodosVal:", initialToDosVal);
       return (
         <>
-          {initialToDosVal?.data?.todos?.map((todo, index) => (
-            <div key={index}> {todo.body} </div>
-          ))}
+          {initialToDosVal?.map((todo, index) => {
+            return <div key={index}> {todo.todo} </div>;
+          })}
         </>
       );
     }
@@ -79,11 +82,8 @@ const Home = () => {
               key={index}
               value={option.value}
               onClick={() => {
+                console.log("checking Todos", option.label);
                 setValue(option.label);
-
-                // initialPostVal?.data?.posts?.map((post, index) => {
-
-                //   return <div key={index}>{post.body}</div>;
               }}
             >
               {option.label}

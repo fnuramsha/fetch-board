@@ -10,8 +10,8 @@ const getPosts = async () => {
 
 const getToDos = async () => {
   const toDosData = await axios.get("https://dummyjson.com/todos");
-  console.log(toDosData.data.todos);
-  return toDosData;
+  //   console.log(toDosData.data.todos);
+  return toDosData.data.todos;
 };
 
 const MyContext = createContext();
