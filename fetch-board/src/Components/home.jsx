@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { MyContext } from "../context/dataContext";
+import Pagination from "./Pagination";
 
 const Home = () => {
   const {
@@ -42,7 +43,7 @@ const Home = () => {
       console.log("ToDos Data from initialPostVal:", initialPostVal);
       return (
         <>
-          {initialPostVal?.data?.posts?.map((post, index) => (
+          {initialPostVal?.data?.posts?.slice(0, 1).map((post, index) => (
             <div key={index}>{post.body}</div>
           ))}
         </>
@@ -115,9 +116,9 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Another pagination */}
+            {/* Pagination */}
 
-            <nav aria-label="Page navigation example">
+            {/* <nav aria-label="Page navigation example">
               <ul className="pagination">
                 <li className="page-item">
                   <a className="page-link" href="#" aria-label="Previous">
@@ -147,7 +148,8 @@ const Home = () => {
                   </a>
                 </li>
               </ul>
-            </nav>
+            </nav> */}
+            <Pagination />
           </div>
         </div>
       </div>
