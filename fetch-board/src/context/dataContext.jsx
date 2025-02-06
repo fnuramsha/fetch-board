@@ -3,24 +3,24 @@ import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+const MyContext = createContext();
+
 const getPosts = async () => {
-  const newData = axios.get("https://dummyjson.com/posts/");
-  return newData;
+  const initialPostVal = axios.get("https://dummyjson.com/posts");
+  return initialPostVal;
 };
 
 const getToDos = async () => {
-  const toDosData = await axios.get("https://dummyjson.com/todos");
-  //   console.log(toDosData.data.todos);
-  return toDosData.data.todos;
+  const initialToDosVal = await axios.get("https://dummyjson.com/todos");
+  console.log(initialToDosVal);
+  return initialToDosVal;
 };
-
-const MyContext = createContext();
 
 const MyProvider = ({ children }) => {
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
 
-  const value = {
+  const values = {
     initialPostVal,
     setPostVal,
     getPosts,
@@ -28,7 +28,7 @@ const MyProvider = ({ children }) => {
     setToDosVal,
     getToDos,
   };
-  return <MyContext.Provider value={value}>{children}</MyContext.Provider>;
+  return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
 
 MyProvider.propTypes = {

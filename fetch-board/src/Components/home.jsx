@@ -12,47 +12,38 @@ const Home = () => {
     setToDosVal,
     getToDos,
   } = useContext(MyContext);
-
-  // Dropdown related stuff
   const [value, setValue] = useState("");
+
   const options = [
-    { label: "Resources", value: 1 },
-    { label: "Posts", value: "Posts" },
-    { label: "ToDos", value: "ToDos" },
+    { label: "Resources", value: 0 },
+    { label: "Posts", value: 1 },
+    { label: "ToDos", value: 2 },
   ];
 
-  // commented this code for future reference
-  // function handleSelect(event) {
-  //   setValue(event.target.label);
-  // }
-  // --------------------------
-
   useEffect(() => {
-    const fetchData = async () => {
-      const updatedData = await getPosts();
-      setPostVal(updatedData);
+    const fetchPosts = async () => {
+      const updatedPost = await getPosts();
+      setPostVal(updatedPost);
     };
-    fetchData();
+    fetchPosts();
   }, []);
 
   useEffect(() => {
     const fetchToDos = async () => {
       const updatedToDos = await getToDos();
-      // console.log("updatedTodos:", updatedToDos);
       setToDosVal(updatedToDos);
     };
     fetchToDos();
   }, []);
-
   //  for the purpose to show data
 
-  const displayContent = () => {
+  const displayData = () => {
     if (value === "Posts") {
-      // console.log("initialPostsVal:", initialPostVal);
+      console.log("ToDos Data from initialPostVal:", initialPostVal);
       return (
         <>
           {initialPostVal?.data?.posts?.map((post, index) => (
-            <div key={index}> {post.body} </div>
+            <div key={index}>{post.body}</div>
           ))}
         </>
       );
@@ -60,7 +51,7 @@ const Home = () => {
       console.log("ToDos Data from initialTodosVal:", initialToDosVal);
       return (
         <>
-          {initialToDosVal?.map((todo, index) => {
+          {initialToDosVal?.data?.todos?.map((todo, index) => {
             return <div key={index}> {todo.todo} </div>;
           })}
         </>
@@ -72,35 +63,32 @@ const Home = () => {
     <div className="container-fluid vh-100">
       <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
         {/* Bootstrap dropdown */}
+        {/* <DropdownButton id="dropdown-basic-button" variant="secondary">
+          <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item>
+        </DropdownButton> */}
+        {/* React bootstrap dropdown */}
+
         <DropdownButton
           id="dropdown-basic-button"
-          title={value || "Resources"}
           variant="secondary"
+          title={value || "Resources"}
         >
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              value={option.value}
-              onClick={() => {
-                console.log("checking Todos", option.label);
-                setValue(option.label);
-              }}
+              value={option.label}
+              onClick={() => setValue(option.label)}
             >
-              {option.label}
+              {" "}
+              {option.label}{" "}
             </Dropdown.Item>
           ))}
-          {/* <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item> */}
         </DropdownButton>
+        {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
 
-        {/* Dropdown related stuff , Commented this code for future reference*/}
-        {/* <select className="form-select" onChange={handleSelect}>
-          {options.map((option, index) => (
-            <option key={index} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select> */}
         {/* for border */}
         <div className="col-10 main-content p-4">
           <div className="border border-3 p-3 mt-3">
@@ -123,7 +111,7 @@ const Home = () => {
             <div className="col-12 main-content p-6">
               <div className="border border-6 p-3 mt-3">
                 <h3 className="text-decoration-underline">Posts and ToDos</h3>
-                <div>{displayContent()}</div>
+                <div>{displayData()}</div>
               </div>
             </div>
 
