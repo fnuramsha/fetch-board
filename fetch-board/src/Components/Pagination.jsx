@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { MyContext } from "../context/dataContext";
+
 const Pagination = () => {
   return (
     <nav aria-label="Page navigation example">

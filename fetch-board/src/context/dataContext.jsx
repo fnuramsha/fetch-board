@@ -20,6 +20,17 @@ const MyProvider = ({ children }) => {
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
 
+  //   const [currentPage, setCurrentPage] = useState(1);
+  //   const [rowsPerPage, setRowsPerPage] = useState(10);
+  //   const indexOfLastItem = currentPage * rowsPerPage;
+  //   const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  //   const currentItems = initialPostVal?.data?.posts?.slice(
+  //     indexOfFirstItem,
+  //     indexOfLastItem
+  //   );
+  //   //   find out total no of posts
+  //   const totalPosts = Math.ceil(initialPostVal?.data?.posts / rowsPerPage);
+
   const values = {
     initialPostVal,
     setPostVal,

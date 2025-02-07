@@ -13,6 +13,22 @@ const Home = () => {
     setToDosVal,
     getToDos,
   } = useContext(MyContext);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const indexOfLastItem = currentPage * rowsPerPage;
+  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  const currentPosts = initialPostVal?.data?.posts?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  const currentToDos = initialToDosVal?.data?.todos?.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
+  //   find out total no of posts
+  const totalPosts = Math.ceil(initialPostVal?.data?.posts / rowsPerPage);
+
   const [value, setValue] = useState("");
 
   const options = [
@@ -43,8 +59,17 @@ const Home = () => {
       console.log("ToDos Data from initialPostVal:", initialPostVal);
       return (
         <>
-          {initialPostVal?.data?.posts?.slice(0, 1).map((post, index) => (
-            <div key={index}>{post.body}</div>
+          {/* {initialPostVal?.data?.posts?.map((post, index) => (
+            <div key={index}>
+              {post.title} <b> Views:</b> {post.views}
+            </div>
+          ))} */}
+
+          {currentPosts?.map((post, index) => (
+            <div key={index}>
+              {" "}
+              {post.title} <b>Views:</b> {post.views}{" "}
+            </div>
           ))}
         </>
       );
@@ -52,9 +77,12 @@ const Home = () => {
       console.log("ToDos Data from initialTodosVal:", initialToDosVal);
       return (
         <>
-          {initialToDosVal?.data?.todos?.map((todo, index) => {
+          {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
             return <div key={index}> {todo.todo} </div>;
-          })}
+          })} */}
+          {currentToDos?.map((todo, index) => (
+            <div key={index}> {todo.todo}</div>
+          ))}
         </>
       );
     }
