@@ -12,24 +12,10 @@ const Home = () => {
     initialToDosVal,
     setToDosVal,
     getToDos,
+    displayData,
+    value,
+    setValue,
   } = useContext(MyContext);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const indexOfLastItem = currentPage * rowsPerPage;
-  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
-  const currentPosts = initialPostVal?.data?.posts?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-  const currentToDos = initialToDosVal?.data?.todos?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-  //   find out total no of posts
-  const totalPosts = Math.ceil(initialPostVal?.data?.posts / rowsPerPage);
-
-  const [value, setValue] = useState("");
 
   const options = [
     { label: "Resources", value: 0 },
@@ -52,50 +38,10 @@ const Home = () => {
     };
     fetchToDos();
   }, []);
-  //  for the purpose to show data
-
-  const displayData = () => {
-    if (value === "Posts") {
-      console.log("ToDos Data from initialPostVal:", initialPostVal);
-      return (
-        <>
-          {/* {initialPostVal?.data?.posts?.map((post, index) => (
-            <div key={index}>
-              {post.title} <b> Views:</b> {post.views}
-            </div>
-          ))} */}
-
-          {currentPosts?.map((post, index) => (
-            <div key={index}>
-              {" "}
-              {post.title} <b>Views:</b> {post.views}{" "}
-            </div>
-          ))}
-        </>
-      );
-    } else if (value === "ToDos") {
-      console.log("ToDos Data from initialTodosVal:", initialToDosVal);
-      return (
-        <>
-          {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
-            return <div key={index}> {todo.todo} </div>;
-          })} */}
-          {currentToDos?.map((todo, index) => (
-            <div key={index}> {todo.todo}</div>
-          ))}
-        </>
-      );
-    }
-  };
 
   return (
     <div className="container-fluid vh-100">
       <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
-        {/* Bootstrap dropdown */}
-        {/* <DropdownButton id="dropdown-basic-button" variant="secondary">
-          <Dropdown.Item href="#/action-1">Posts</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Todos</Dropdown.Item>
-        </DropdownButton> */}
         {/* React bootstrap dropdown */}
 
         <DropdownButton
@@ -114,9 +60,6 @@ const Home = () => {
             </Dropdown.Item>
           ))}
         </DropdownButton>
-        {/* <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item> */}
 
         {/* for border */}
         <div className="col-10 main-content p-4">
