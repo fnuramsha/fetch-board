@@ -6,7 +6,8 @@ import axios from "axios";
 const MyContext = createContext();
 
 const getPosts = async () => {
-  const initialPostVal = axios.get("https://dummyjson.com/posts");
+  const initialPostVal = await axios.get("https://dummyjson.com/posts");
+  console.log(initialPostVal);
   return initialPostVal;
 };
 
@@ -33,8 +34,12 @@ const MyProvider = ({ children }) => {
     indexOfFirstItem,
     indexOfLastItem
   );
-  //   find out total no of posts
-  const totalPosts = Math.ceil(initialPostVal?.data?.posts / rowsPerPage);
+  //   find total no of posts
+  const totalPosts = Math.ceil(
+    initialPostVal?.data?.posts.length / rowsPerPage
+  );
+
+  // find total no of todos
 
   const displayData = () => {
     if (value === "Posts") {
