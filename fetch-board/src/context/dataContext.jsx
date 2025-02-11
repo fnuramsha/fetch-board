@@ -40,6 +40,9 @@ const MyProvider = ({ children }) => {
   );
 
   // find total no of todos
+  const totalTodos = Math.ceil(
+    initialToDosVal?.data?.todos.length / rowsPerPage
+  );
 
   const displayData = () => {
     if (value === "Posts") {
@@ -88,6 +91,7 @@ const MyProvider = ({ children }) => {
     currentPage,
     setCurrentPage,
     totalPosts,
+    totalTodos,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
