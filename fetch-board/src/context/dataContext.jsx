@@ -47,6 +47,7 @@ const MyProvider = ({ children }) => {
   const displayData = () => {
     if (value === "Posts") {
       console.log("ToDos Data from initialPostVal:", initialPostVal);
+
       return (
         <>
           {/* {initialPostVal?.data?.posts?.map((post, index) => (
@@ -65,6 +66,7 @@ const MyProvider = ({ children }) => {
       );
     } else if (value === "ToDos") {
       console.log("ToDos Data from initialTodosVal:", initialToDosVal);
+
       return (
         <>
           {/* {initialToDosVal?.data?.todos?.map((todo, index) => {

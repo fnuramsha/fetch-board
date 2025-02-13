@@ -15,6 +15,7 @@ const Home = () => {
     displayData,
     value,
     setValue,
+    setCurrentPage,
   } = useContext(MyContext);
 
   const options = [
@@ -52,8 +53,10 @@ const Home = () => {
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              value={option.label}
-              onClick={() => setValue(option.label)}
+              onClick={() => {
+                setValue(option.label);
+                setCurrentPage(1); // Reset pagination when dropdown changes
+              }}
             >
               {" "}
               {option.label}{" "}
