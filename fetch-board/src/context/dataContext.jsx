@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 const MyContext = createContext();
 
 const getPosts = async () => {
@@ -34,12 +34,10 @@ const MyProvider = ({ children }) => {
     indexOfFirstItem,
     indexOfLastItem
   );
-  //   find total no of posts
+
   const totalPosts = Math.ceil(
     initialPostVal?.data?.posts.length / rowsPerPage
   );
-
-  // find total no of todos
   const totalTodos = Math.ceil(
     initialToDosVal?.data?.todos.length / rowsPerPage
   );
@@ -59,7 +57,11 @@ const MyProvider = ({ children }) => {
           {currentPosts?.map((post, index) => (
             <div key={index}>
               {" "}
-              {post.title} <b>Views:</b> {post.views}{" "}
+              <h4>
+                <Link to={"/post/$post.id}"}>
+                  {post.title} <b>Views:</b> {post.views}
+                </Link>
+              </h4>
             </div>
           ))}
         </>

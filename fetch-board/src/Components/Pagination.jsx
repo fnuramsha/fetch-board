@@ -29,13 +29,11 @@ const Pagination = () => {
             href="#"
             aria-label="Previous"
             onClick={handlePrev}
-            disabled={currentPage === 1}
           >
             <span aria-hidden="true">&laquo;</span>
-            <span className="sr-only"></span>
+            <span className="sr-only"> </span>
           </a>
         </li>
-
         {Array.from({ length: totalPosts }, (_, index) => (
           <li key={index} className="page-item">
             <a
@@ -43,7 +41,6 @@ const Pagination = () => {
               href="#"
               onClick={() => handlePageClick(index + 1)}
             >
-              {" "}
               {index + 1}
             </a>
           </li>
@@ -55,7 +52,6 @@ const Pagination = () => {
             href="#"
             aria-label="Next"
             onClick={handleNext}
-            disabled={currentPage === totalPosts}
           >
             <span aria-hidden="true">&raquo;</span>
             <span className="sr-only"></span>
