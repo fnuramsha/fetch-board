@@ -17,10 +17,19 @@ const getToDos = async () => {
   return initialToDosVal;
 };
 
+const getSinglePosts = async (id) => {
+  const singlePostVal = await axios.get(`https://dummyjson.com/posts/${id}`);
+  console.log("Post Id", id);
+  console.log(singlePostVal);
+
+  return singlePostVal;
+};
+
 const MyProvider = ({ children }) => {
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
   const [value, setValue] = useState("");
+  const [singlePostVal, setSinglePostVal] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -58,7 +67,7 @@ const MyProvider = ({ children }) => {
             <div key={index}>
               {" "}
               <h4>
-                <Link to={"/post/$post.id}"}>
+                <Link to={"/post/${post.id}"}>
                   {post.title} <b>Views:</b> {post.views}
                 </Link>
               </h4>
@@ -96,6 +105,9 @@ const MyProvider = ({ children }) => {
     setCurrentPage,
     totalPosts,
     totalTodos,
+    getSinglePosts,
+    singlePostVal,
+    setSinglePostVal,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
