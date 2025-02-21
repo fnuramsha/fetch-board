@@ -6,10 +6,8 @@ import Pagination from "./Pagination";
 
 const Home = () => {
   const {
-    initialPostVal,
     setPostVal,
     getPosts,
-    initialToDosVal,
     setToDosVal,
     getToDos,
     displayData,
