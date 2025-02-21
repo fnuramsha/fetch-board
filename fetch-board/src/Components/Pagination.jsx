@@ -1,9 +1,8 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { MyContext } from "../context/dataContext";
 
 const Pagination = () => {
-  const { currentPage, setCurrentPage, totalPosts, totalTodos } =
-    useContext(MyContext);
+  const { setCurrentPage, totalPosts } = useContext(MyContext);
 
   const handlePrev = () => {
     console.log("Pagination is working");
