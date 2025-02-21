@@ -6,12 +6,11 @@ const Post = () => {
   const { getSinglePosts, singlePostVal, setSinglePostVal } =
     useContext(MyContext);
   const { id } = useParams();
+
   useEffect(() => {
     const fetchSinglePost = async () => {
       const updatedSinglePost = await getSinglePosts(id);
-      if (updatedSinglePost) {
-        setSinglePostVal(updatedSinglePost);
-      }
+      setSinglePostVal(updatedSinglePost);
     };
     fetchSinglePost();
   }, []);
