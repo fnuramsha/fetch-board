@@ -27,8 +27,8 @@ const getSinglePosts = async (id) => {
 
 const getSingleToDos = async (id) => {
   const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
-  console.log("ToDo id", id);
-  console.log(singleToDos);
+  console.log("ToDo id and Single ToDos", id, singleToDos);
+  return singleToDos;
 };
 
 const MyProvider = ({ children }) => {

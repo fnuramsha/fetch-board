@@ -3,19 +3,29 @@ import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 
 const ToDos = () => {
-  const { getSingleToDos, setSingleToDos } = useContext(MyContext);
+  const { getSingleToDos, setSingleToDos, singleToDos } = useContext(MyContext);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchSingleToDos = async () => {
       const updatedSingleToDos = await getSingleToDos(id);
+      console.log("Checking Single Todos", singleToDos);
       setSingleToDos(updatedSingleToDos);
     };
     fetchSingleToDos();
   }, []);
   return (
     <div>
-      <h1>hello</h1>
+      <h4>ToDos Information: </h4>
+
+      <p>
+        <b> ToDos Title : </b>
+        {singleToDos?.data?.todo}
+      </p>
+      <p>
+        <b>ToDos userId: </b>
+        {singleToDos?.data?.userId}
+      </p>
     </div>
   );
 };
