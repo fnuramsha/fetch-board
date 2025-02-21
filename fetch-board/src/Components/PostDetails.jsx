@@ -10,24 +10,29 @@ const Post = () => {
   useEffect(() => {
     const fetchSinglePost = async () => {
       const updatedSinglePost = await getSinglePosts(id);
+      console.log("Check Single Post value", singlePostVal);
       setSinglePostVal(updatedSinglePost);
     };
     fetchSinglePost();
-  }, []);
+  }, [id]);
 
   return (
     <div>
-      {singlePostVal ? (
-        <>
-          <h1>{singlePostVal.title}</h1>
-          <p>{singlePostVal.body}</p>
-          <p>
-            <strong>Views:</strong> {singlePostVal.views}
-          </p>
-        </>
-      ) : (
-        <p>Loading...</p>
-      )}
+      <h4>Post Information: </h4>
+
+      <p>
+        <b> Post Title : </b>
+        {singlePostVal?.data?.title}
+      </p>
+      <p>
+        <b>Post Body: </b>
+        {singlePostVal?.data?.body}
+      </p>
+      <p>
+        {" "}
+        <b>Views: </b>
+        {singlePostVal?.data?.views}
+      </p>
     </div>
   );
 };
