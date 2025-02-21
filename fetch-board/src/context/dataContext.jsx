@@ -25,23 +25,18 @@ const getSinglePosts = async (id) => {
   return singlePostVal;
 };
 
-// const getSinglePosts = async (id) => {
-//   try {
-//     // ✅ Use backticks for the URL and make sure `${id}` is inside them
-//     const response = await axios.get(`https://dummyjson.com/posts/${id}`);
-//     console.log("Fetched Post:", response.data);
-//     return response.data; // ✅ Return only the data part
-//   } catch (error) {
-//     console.error("Error fetching single post:", error);
-//     return null; // Handle errors gracefully
-//   }
-// };
+const getSingleToDos = async (id) => {
+  const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
+  console.log("ToDo id", id);
+  console.log(singleToDos);
+};
 
 const MyProvider = ({ children }) => {
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
   const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
+  const [singleToDos, setSingleToDos] = useState([]);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -96,7 +91,11 @@ const MyProvider = ({ children }) => {
             return <div key={index}> {todo.todo} </div>;
           })} */}
           {currentToDos?.map((todo, index) => (
-            <div key={index}> {todo.todo}</div>
+            <div key={index}>
+              <h4>
+                <Link to={`/todo/${todo.id}`}>{todo.todo}</Link>
+              </h4>
+            </div>
           ))}
         </>
       );
@@ -120,6 +119,9 @@ const MyProvider = ({ children }) => {
     getSinglePosts,
     singlePostVal,
     setSinglePostVal,
+    getSingleToDos,
+    singleToDos,
+    setSingleToDos,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
