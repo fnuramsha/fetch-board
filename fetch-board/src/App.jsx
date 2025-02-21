@@ -16,7 +16,7 @@ function App() {
       <Breadcrumb />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/post/${post.id}" element={<Post />} />
+        <Route path="/post/:id" element={<Post />} />
       </Routes>
     </>
   );

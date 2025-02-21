@@ -9,10 +9,12 @@ const Post = () => {
   useEffect(() => {
     const fetchSinglePost = async () => {
       const updatedSinglePost = await getSinglePosts(id);
-      setSinglePostVal(updatedSinglePost);
+      if (updatedSinglePost) {
+        setSinglePostVal(updatedSinglePost);
+      }
     };
     fetchSinglePost();
-  }, [id]);
+  }, []);
 
   return (
     <div>

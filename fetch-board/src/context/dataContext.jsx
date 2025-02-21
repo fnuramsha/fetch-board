@@ -25,6 +25,18 @@ const getSinglePosts = async (id) => {
   return singlePostVal;
 };
 
+// const getSinglePosts = async (id) => {
+//   try {
+//     // ✅ Use backticks for the URL and make sure `${id}` is inside them
+//     const response = await axios.get(`https://dummyjson.com/posts/${id}`);
+//     console.log("Fetched Post:", response.data);
+//     return response.data; // ✅ Return only the data part
+//   } catch (error) {
+//     console.error("Error fetching single post:", error);
+//     return null; // Handle errors gracefully
+//   }
+// };
+
 const MyProvider = ({ children }) => {
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
@@ -67,7 +79,7 @@ const MyProvider = ({ children }) => {
             <div key={index}>
               {" "}
               <h4>
-                <Link to={"/post/${post.id}"}>
+                <Link to={`/post/${post.id}`}>
                   {post.title} <b>Views:</b> {post.views}
                 </Link>
               </h4>
