@@ -37,6 +37,7 @@ const MyProvider = ({ children }) => {
   const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
+  const [selectedPage, setSelectedPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -122,6 +123,8 @@ const MyProvider = ({ children }) => {
     getSingleToDos,
     singleToDos,
     setSingleToDos,
+    selectedPage,
+    setSelectedPage,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
