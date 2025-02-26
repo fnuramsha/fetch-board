@@ -13,7 +13,7 @@ const Breadcrumb = () => {
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item active" aria-current="page">
-            Home/{selectedPage}/ToDosInformation
+            Home/{selectedPage}/{detailsPage}
           </li>
         </ol>
       </nav>

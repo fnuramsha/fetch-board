@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 const MyContext = createContext();
 
 const details = [
-  { label: "PostDetails", value: 1 },
-  { label: "ToDosDetails", value: 2 },
+  { label: "PostDetails", value: 0 },
+  { label: "ToDosDetails", value: 1 },
 ];
 
 const getPosts = async () => {
@@ -44,7 +44,6 @@ const MyProvider = ({ children }) => {
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
   const [detailsPage, setDetailsPage] = useState("");
-  console.log("I am useState of details screen", selectedPage);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -85,7 +84,11 @@ const MyProvider = ({ children }) => {
                 <Link
                   to={`/post/${post.id}`}
                   onClick={() => {
-                    details.find((detail) => setDetailsPage(detail.label));
+                    const selectedDetail = details.find((detail) => {
+                      if (detail === "PosDetails") {
+                        return selectedDetail(detail.label);
+                      }
+                    });
                   }}
                 >
                   {post.title} <b>Views:</b> {post.views}
