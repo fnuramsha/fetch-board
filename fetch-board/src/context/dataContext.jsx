@@ -44,6 +44,7 @@ const MyProvider = ({ children }) => {
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
   const [detailsPage, setDetailsPage] = useState("");
+  console.log("I am useState of details screen", selectedPage);
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -81,7 +82,12 @@ const MyProvider = ({ children }) => {
             <div key={index}>
               {" "}
               <h4>
-                <Link to={`/post/${post.id}`}>
+                <Link
+                  to={`/post/${post.id}`}
+                  onClick={() => {
+                    details.find((detail) => setDetailsPage(detail.label));
+                  }}
+                >
                   {post.title} <b>Views:</b> {post.views}
                 </Link>
               </h4>

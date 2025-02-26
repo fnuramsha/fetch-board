@@ -53,7 +53,7 @@ const Home = () => {
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              value={selectedPage}
+              //value={selectedPage}
               onClick={() => {
                 setValue(option.label);
                 setSelectedPage(option.label);

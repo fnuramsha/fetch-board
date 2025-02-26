@@ -6,14 +6,24 @@ import { useLocation } from "react-router-dom";
 const Breadcrumb = () => {
   const { selectedPage, detailsPage } = useContext(MyContext);
   const location = useLocation(); // returns the current location
-  console.log("I am path", location);
+  console.log("I am selectedPage useState", selectedPage);
   console.log("Details page useState", detailsPage);
   if (location?.pathname?.includes("/todo/")) {
     return (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item active" aria-current="page">
-            Home/{selectedPage}/{detailsPage}
+            Home/{selectedPage}/ToDosInformation
+          </li>
+        </ol>
+      </nav>
+    );
+  } else if (location?.pathname?.includes("/post")) {
+    return (
+      <nav aria-label="breadcrumb">
+        <ol className="breadcrumb">
+          <li className="breadcrumb-item active" aria-current="page">
+            Home/{selectedPage}/PostsInformation
           </li>
         </ol>
       </nav>
