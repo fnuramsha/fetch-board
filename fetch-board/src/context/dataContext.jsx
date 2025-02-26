@@ -5,6 +5,11 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const MyContext = createContext();
 
+const details = [
+  { label: "PostDetails", value: 1 },
+  { label: "ToDosDetails", value: 2 },
+];
+
 const getPosts = async () => {
   const initialPostVal = await axios.get("https://dummyjson.com/posts");
   console.log(initialPostVal);
@@ -37,7 +42,8 @@ const MyProvider = ({ children }) => {
   const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
-  const [selectedPage, setSelectedPage] = useState("");
+  const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
+  const [detailsPage, setDetailsPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -94,7 +100,13 @@ const MyProvider = ({ children }) => {
           {currentToDos?.map((todo, index) => (
             <div key={index}>
               <h4>
-                <Link to={`/todo/${todo.id}`}>{todo.todo}</Link>
+                <Link
+                  to={`/todo/${todo.id}`}
+                  onClick={() => setDetailsPage(details.label)}
+                >
+                  {todo.todo}
+                  {/* ToDoDetails */}
+                </Link>
               </h4>
             </div>
           ))}
@@ -125,6 +137,8 @@ const MyProvider = ({ children }) => {
     setSingleToDos,
     selectedPage,
     setSelectedPage,
+    detailsPage,
+    setDetailsPage,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

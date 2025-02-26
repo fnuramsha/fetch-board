@@ -4,13 +4,11 @@ import { Route, Routes } from "react-router-dom";
 import Breadcrumb from "./Components/Breadcrumb";
 import Post from "./Components/PostDetails";
 import ToDos from "./Components/ToDosDetails";
-import { useState } from "react";
 
 function App() {
-  const [selected, setSelected] = useState("Post");
   return (
     <>
-      <Breadcrumb value={selected} />
+      <Breadcrumb />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/post/:id" element={<Post />} />
