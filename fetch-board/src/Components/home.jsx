@@ -4,6 +4,12 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import { MyContext } from "../context/dataContext";
 import Pagination from "./Pagination";
 
+const options = [
+  { label: "Resources", value: 0 },
+  { label: "Posts", value: 1 },
+  { label: "ToDos", value: 2 },
+];
+
 const Home = () => {
   const {
     setPostVal,
@@ -17,12 +23,6 @@ const Home = () => {
     selectedPage,
     setSelectedPage,
   } = useContext(MyContext);
-
-  const options = [
-    { label: "Resources", value: 0 },
-    { label: "Posts", value: 1 },
-    { label: "ToDos", value: 2 },
-  ];
 
   useEffect(() => {
     const fetchPosts = async () => {
