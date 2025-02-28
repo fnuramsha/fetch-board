@@ -43,7 +43,7 @@ const MyProvider = ({ children }) => {
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
-  const [detailsPage, setDetailsPage] = useState("");
+  // const [detailsPage, setDetailsPage] = useState("");
 
   const [currentPage, setCurrentPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -83,13 +83,13 @@ const MyProvider = ({ children }) => {
               <h4>
                 <Link
                   to={`/post/${post.id}`}
-                  onClick={() => {
-                    const selectedDetail = details.find((detail) => {
-                      if (detail === "PosDetails") {
-                        return selectedDetail(detail.label);
-                      }
-                    });
-                  }}
+                  // onClick={() => {
+                  //   const selectedDetail = details.find((detail) => {
+                  //     if (detail === "PosDetails") {
+                  //       return selectedDetail(detail.label);
+                  //     }
+                  //   });
+                  // }}
                 >
                   {post.title} <b>Views:</b> {post.views}
                 </Link>
@@ -111,7 +111,7 @@ const MyProvider = ({ children }) => {
               <h4>
                 <Link
                   to={`/todo/${todo.id}`}
-                  onClick={() => setDetailsPage(details.label)}
+                  // onClick={() => setDetailsPage(details.label)}
                 >
                   {todo.todo}
                   {/* ToDoDetails */}
@@ -146,8 +146,6 @@ const MyProvider = ({ children }) => {
     setSingleToDos,
     selectedPage,
     setSelectedPage,
-    detailsPage,
-    setDetailsPage,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
