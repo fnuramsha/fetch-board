@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -37,6 +37,15 @@ const getSingleToDos = async (id) => {
 };
 
 const MyProvider = ({ children }) => {
+  // Implementing useReducer Hook for setValue, setSelectedPage
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const initialState = "";
+  const reducer = (state, action) => {
+    console.log("State", state);
+    console.log("Action", action);
+    return state;
+  };
+
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
   const [value, setValue] = useState("");

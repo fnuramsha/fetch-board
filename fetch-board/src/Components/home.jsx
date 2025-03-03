@@ -22,6 +22,8 @@ const Home = () => {
     setCurrentPage,
     selectedPage,
     setSelectedPage,
+    state,
+    dispatch,
   } = useContext(MyContext);
 
   useEffect(() => {
@@ -54,11 +56,12 @@ const Home = () => {
             <Dropdown.Item
               key={index}
               //value={selectedPage}
-              onClick={() => {
-                setValue(option.label);
-                setSelectedPage(option.label);
-                setCurrentPage(1); // Reset pagination when dropdown changes
-              }}
+              // onClick={() => {
+              //   setValue(option.label);
+              //   setSelectedPage(option.label);
+              //   setCurrentPage(1); // Reset pagination when dropdown changes
+              // }}
+              onClick={() => dispatch("")}
             >
               {" "}
               {option.label}{" "}
