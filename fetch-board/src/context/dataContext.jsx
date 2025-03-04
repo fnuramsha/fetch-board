@@ -145,7 +145,7 @@ const MyProvider = ({ children }) => {
     setToDosVal,
     getToDos,
     displayData,
-
+    dispatch,
     currentPage,
     setCurrentPage,
     totalPosts,
