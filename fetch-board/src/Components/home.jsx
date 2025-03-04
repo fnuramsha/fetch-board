@@ -56,12 +56,13 @@ const Home = () => {
             <Dropdown.Item
               key={index}
               //value={selectedPage}
-              // onClick={() => {
-              //   setValue(option.label);
-              //   setSelectedPage(option.label);
-              //   setCurrentPage(1); // Reset pagination when dropdown changes
-              // }}
-              onClick={() => dispatch("")}
+              onClick={() => {
+                // setValue(option.label);
+                dispatch({ type: "SET_OPTION", payload: option.label });
+                setSelectedPage(option.label);
+                setCurrentPage(1); // Reset pagination when dropdown changes
+              }}
+              // onClick={() => dispatch({ type: "ADD_TODO" })}
             >
               {" "}
               {option.label}{" "}

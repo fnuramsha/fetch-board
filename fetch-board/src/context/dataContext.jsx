@@ -5,11 +5,6 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 const MyContext = createContext();
 
-const details = [
-  { label: "PostDetails", value: 0 },
-  { label: "ToDosDetails", value: 1 },
-];
-
 const getPosts = async () => {
   const initialPostVal = await axios.get("https://dummyjson.com/posts");
   console.log(initialPostVal);
@@ -38,17 +33,26 @@ const getSingleToDos = async (id) => {
 
 const MyProvider = ({ children }) => {
   // Implementing useReducer Hook for setValue, setSelectedPage
-  const [state, dispatch] = useReducer(reducer, initialState);
-  const initialState = "";
+
+  const initialState = {
+    value: "",
+  };
+
   const reducer = (state, action) => {
     console.log("State", state);
     console.log("Action", action);
-    return state;
+    switch (action.type) {
+      case "SET_OPTION":
+        return { ...state, value: action.payload };
+      default:
+        return state;
+    }
   };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const [initialPostVal, setPostVal] = useState([]);
   const [initialToDosVal, setToDosVal] = useState([]);
-  const [value, setValue] = useState("");
+  //const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
@@ -75,7 +79,7 @@ const MyProvider = ({ children }) => {
   );
 
   const displayData = () => {
-    if (value === "Posts") {
+    if (state.value === "Posts") {
       console.log("ToDos Data from initialPostVal:", initialPostVal);
 
       return (
@@ -107,7 +111,7 @@ const MyProvider = ({ children }) => {
           ))}
         </>
       );
-    } else if (value === "ToDos") {
+    } else if (state.value === "ToDos") {
       console.log("ToDos Data from initialTodosVal:", initialToDosVal);
 
       return (
@@ -141,8 +145,7 @@ const MyProvider = ({ children }) => {
     setToDosVal,
     getToDos,
     displayData,
-    value,
-    setValue,
+
     currentPage,
     setCurrentPage,
     totalPosts,
