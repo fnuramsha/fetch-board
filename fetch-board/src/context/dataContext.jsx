@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 const MyContext = createContext();
 
 const getPosts = async () => {
-  const initialPostVal = await axios.get("https://dummyjson.com/posts");
-  console.log(initialPostVal);
-  return initialPostVal;
+  const postData = await axios.get("https://dummyjson.com/posts");
+  console.log("I am actual postData", postData.data.posts);
+  return postData.data.posts;
 };
 
 const getToDos = async () => {
-  const initialToDosVal = await axios.get("https://dummyjson.com/todos");
-  console.log(initialToDosVal);
-  return initialToDosVal;
+  const toDoData = await axios.get("https://dummyjson.com/todos");
+  // console.log("I am to Do data", toDoData.data.todos);
+  return toDoData.data.todos;
 };
 
 const getSinglePosts = async (id) => {
@@ -36,6 +36,8 @@ const MyProvider = ({ children }) => {
 
   const initialState = {
     value: "",
+    postData: [],
+    ToDoData: [],
   };
 
   const reducer = (state, action) => {
@@ -43,44 +45,59 @@ const MyProvider = ({ children }) => {
     console.log("Action", action);
     switch (action.type) {
       case "SET_OPTION":
-        return { ...state, value: action.payload };
+        console.log("action newRepos check", action.payload);
+        return {
+          ...state,
+          value: action.payload,
+        };
+      case "SET_POSTS":
+        console.log("Check postData in reducer function", action.postData);
+        return {
+          ...state,
+          initialPostVal: action.postData,
+        };
+      case "SET_TODOS":
+        console.log("Check ToDo in reducer function", action.toDoData);
+        return {
+          ...state,
+          initialToDosVal: action.toDoData,
+        };
       default:
         return state;
     }
   };
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const [initialPostVal, setPostVal] = useState([]);
-  const [initialToDosVal, setToDosVal] = useState([]);
+  // const [initialPostVal, setPostVal] = useState([]);
+  // const [initialToDosVal, setToDosVal] = useState([]);
   //const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
-  // const [detailsPage, setDetailsPage] = useState("");
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const indexOfLastItem = currentPage * rowsPerPage;
-  const indexOfFirstItem = indexOfLastItem - rowsPerPage;
-  const currentPosts = initialPostVal?.data?.posts?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
-  const currentToDos = initialToDosVal?.data?.todos?.slice(
-    indexOfFirstItem,
-    indexOfLastItem
-  );
+  // const [currentPage, setCurrentPage] = useState(1);
+  // const [rowsPerPage, setRowsPerPage] = useState(10);
+  // const indexOfLastItem = currentPage * rowsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - rowsPerPage;
+  // const currentPosts = initialPostVal?.data?.posts?.slice(
+  //   indexOfFirstItem,
+  //   indexOfLastItem
+  // );
+  // const currentToDos = initialToDosVal?.data?.todos?.slice(
+  //   indexOfFirstItem,
+  //   indexOfLastItem
+  // );
 
-  const totalPosts = Math.ceil(
-    initialPostVal?.data?.posts.length / rowsPerPage
-  );
-  const totalTodos = Math.ceil(
-    initialToDosVal?.data?.todos.length / rowsPerPage
-  );
+  // const totalPosts = Math.ceil(
+  //   initialPostVal?.data?.posts.length / rowsPerPage
+  // );
+  // const totalTodos = Math.ceil(
+  //   initialToDosVal?.data?.todos.length / rowsPerPage
+  // );
 
   const displayData = () => {
     if (state.value === "Posts") {
-      console.log("ToDos Data from initialPostVal:", initialPostVal);
+      console.log("Check post Data", state.postData);
 
       return (
         <>
@@ -90,7 +107,7 @@ const MyProvider = ({ children }) => {
             </div>
           ))} */}
 
-          {currentPosts?.map((post, index) => (
+          {state.initialPostVal?.map((post, index) => (
             <div key={index}>
               {" "}
               <h4>
@@ -112,14 +129,14 @@ const MyProvider = ({ children }) => {
         </>
       );
     } else if (state.value === "ToDos") {
-      console.log("ToDos Data from initialTodosVal:", initialToDosVal);
+      console.log("ToDos Data from initialTodosVal:", state.initialToDosVal);
 
       return (
         <>
           {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
             return <div key={index}> {todo.todo} </div>;
           })} */}
-          {currentToDos?.map((todo, index) => (
+          {state.initialToDosVal?.map((todo, index) => (
             <div key={index}>
               <h4>
                 <Link
@@ -138,18 +155,10 @@ const MyProvider = ({ children }) => {
   };
 
   const values = {
-    initialPostVal,
-    setPostVal,
     getPosts,
-    initialToDosVal,
-    setToDosVal,
     getToDos,
     displayData,
     dispatch,
-    currentPage,
-    setCurrentPage,
-    totalPosts,
-    totalTodos,
     getSinglePosts,
     singlePostVal,
     setSinglePostVal,

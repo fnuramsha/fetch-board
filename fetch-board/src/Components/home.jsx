@@ -11,25 +11,15 @@ const options = [
 ];
 
 const Home = () => {
-  const {
-    setPostVal,
-    getPosts,
-    setToDosVal,
-    getToDos,
-    displayData,
-    value,
-    setValue,
-    setCurrentPage,
-    selectedPage,
-    setSelectedPage,
-    state,
-    dispatch,
-  } = useContext(MyContext);
+  const { getPosts, getToDos, displayData, state, dispatch } =
+    useContext(MyContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
       const updatedPost = await getPosts();
-      setPostVal(updatedPost);
+      if (updatedPost && updatedPost.length > 0) {
+        dispatch({ type: "SET_POSTS", postData: updatedPost });
+      }
     };
     fetchPosts();
   }, []);
@@ -37,7 +27,9 @@ const Home = () => {
   useEffect(() => {
     const fetchToDos = async () => {
       const updatedToDos = await getToDos();
-      setToDosVal(updatedToDos);
+      if (updatedToDos && updatedToDos.length > 0) {
+        dispatch({ type: "SET_TODOS", toDoData: updatedToDos });
+      }
     };
     fetchToDos();
   }, []);
@@ -50,19 +42,21 @@ const Home = () => {
         <DropdownButton
           id="dropdown-basic-button"
           variant="secondary"
-          title={value || "Resources"}
+          title={state?.value || "Resources"}
         >
           {options.map((option, index) => (
             <Dropdown.Item
               key={index}
-              //value={selectedPage}
+              // value={selectedPage}
+              // onClick={() => {
+              //   setValue(option.label);
+              //   dispatch({ type: "SET_OPTION", payload: option.label });
+              // setSelectedPage(option.label);
+              //   setCurrentPage(1); // Reset pagination when dropdown changes
+              // }}
               onClick={() => {
-                // setValue(option.label);
                 dispatch({ type: "SET_OPTION", payload: option.label });
-                setSelectedPage(option.label);
-                setCurrentPage(1); // Reset pagination when dropdown changes
               }}
-              // onClick={() => dispatch({ type: "ADD_TODO" })}
             >
               {" "}
               {option.label}{" "}

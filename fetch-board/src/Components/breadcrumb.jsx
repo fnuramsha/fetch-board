@@ -4,14 +4,10 @@ import { MyContext } from "../context/dataContext";
 import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumb = () => {
-  const { selectedPage, detailsPage } = useContext(MyContext);
+  const { selectedPage } = useContext(MyContext);
   const location = useLocation(); // returns the current location
   console.log("I am selectedPage useState", selectedPage);
-  console.log("Details page useState", detailsPage);
 
-  const handleClick = () => {
-    return <h1> Hello </h1>;
-  };
   let breadCrumb = null;
   if (location?.pathname?.includes("/todo/")) {
     breadCrumb = "ToDoSInformation";
