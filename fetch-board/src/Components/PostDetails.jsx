@@ -10,7 +10,6 @@ const Post = () => {
   useEffect(() => {
     const fetchSinglePost = async () => {
       const updatedSinglePost = await getSinglePosts(id);
-      console.log("Check Single Post value", singlePostVal);
       setSinglePostVal(updatedSinglePost);
     };
     fetchSinglePost();

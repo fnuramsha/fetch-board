@@ -6,7 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 const Breadcrumb = () => {
   const { selectedPage } = useContext(MyContext);
   const location = useLocation(); // returns the current location
-  console.log("I am selectedPage useState", selectedPage);
 
   let breadCrumb = null;
   if (location?.pathname?.includes("/todo/")) {

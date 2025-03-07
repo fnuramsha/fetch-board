@@ -9,7 +9,6 @@ const ToDos = () => {
   useEffect(() => {
     const fetchSingleToDos = async () => {
       const updatedSingleToDos = await getSingleToDos(id);
-      console.log("Checking Single Todos", singleToDos);
       setSingleToDos(updatedSingleToDos);
     };
     fetchSingleToDos();

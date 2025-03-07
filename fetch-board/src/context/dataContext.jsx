@@ -3,18 +3,17 @@ import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+
 const MyContext = createContext();
 
 const getPosts = async () => {
-  const postData = await axios.get("https://dummyjson.com/posts");
-  console.log("I am actual postData", postData.data.posts);
-  return postData.data.posts;
+  const posts = await axios.get("https://dummyjson.com/posts");
+  return posts.data.posts;
 };
 
 const getToDos = async () => {
-  const toDoData = await axios.get("https://dummyjson.com/todos");
-  // console.log("I am to Do data", toDoData.data.todos);
-  return toDoData.data.todos;
+  const toDos = await axios.get("https://dummyjson.com/todos");
+  return toDos.data.todos;
 };
 
 const getSinglePosts = async (id) => {
@@ -31,46 +30,36 @@ const getSingleToDos = async (id) => {
   return singleToDos;
 };
 
+const initialState = {
+  selectedResource: "",
+  posts: [],
+  toDos: [],
+};
+
+const reducer = (state, { type, payload }) => {
+  switch (type) {
+    case "SET_OPTION":
+      return {
+        ...state,
+        selectedResource: payload,
+      };
+    case "SET_POSTS":
+      return {
+        ...state,
+        posts: payload,
+      };
+    case "SET_TODOS":
+      return {
+        ...state,
+        toDos: payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const MyProvider = ({ children }) => {
-  // Implementing useReducer Hook for setValue, setSelectedPage
-
-  const initialState = {
-    value: "",
-    postData: [],
-    ToDoData: [],
-  };
-
-  const reducer = (state, action) => {
-    console.log("State", state);
-    console.log("Action", action);
-    switch (action.type) {
-      case "SET_OPTION":
-        console.log("action newRepos check", action.payload);
-        return {
-          ...state,
-          value: action.payload,
-        };
-      case "SET_POSTS":
-        console.log("Check postData in reducer function", action.postData);
-        return {
-          ...state,
-          initialPostVal: action.postData,
-        };
-      case "SET_TODOS":
-        console.log("Check ToDo in reducer function", action.toDoData);
-        return {
-          ...state,
-          initialToDosVal: action.toDoData,
-        };
-      default:
-        return state;
-    }
-  };
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // const [initialPostVal, setPostVal] = useState([]);
-  // const [initialToDosVal, setToDosVal] = useState([]);
-  //const [value, setValue] = useState("");
   const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
@@ -96,9 +85,7 @@ const MyProvider = ({ children }) => {
   // );
 
   const displayData = () => {
-    if (state.value === "Posts") {
-      console.log("Check post Data", state.postData);
-
+    if (state.selectedResource === "Posts") {
       return (
         <>
           {/* {initialPostVal?.data?.posts?.map((post, index) => (
@@ -107,20 +94,11 @@ const MyProvider = ({ children }) => {
             </div>
           ))} */}
 
-          {state.initialPostVal?.map((post, index) => (
+          {state.posts?.map((post, index) => (
             <div key={index}>
               {" "}
               <h4>
-                <Link
-                  to={`/post/${post.id}`}
-                  // onClick={() => {
-                  //   const selectedDetail = details.find((detail) => {
-                  //     if (detail === "PosDetails") {
-                  //       return selectedDetail(detail.label);
-                  //     }
-                  //   });
-                  // }}
-                >
+                <Link to={`/post/${post.id}`}>
                   {post.title} <b>Views:</b> {post.views}
                 </Link>
               </h4>
@@ -128,21 +106,16 @@ const MyProvider = ({ children }) => {
           ))}
         </>
       );
-    } else if (state.value === "ToDos") {
-      console.log("ToDos Data from initialTodosVal:", state.initialToDosVal);
-
+    } else if (state.selectedResource === "ToDos") {
       return (
         <>
           {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
             return <div key={index}> {todo.todo} </div>;
           })} */}
-          {state.initialToDosVal?.map((todo, index) => (
+          {state.toDos?.map((todo, index) => (
             <div key={index}>
               <h4>
-                <Link
-                  to={`/todo/${todo.id}`}
-                  // onClick={() => setDetailsPage(details.label)}
-                >
+                <Link to={`/todo/${todo.id}`}>
                   {todo.todo}
                   {/* ToDoDetails */}
                 </Link>

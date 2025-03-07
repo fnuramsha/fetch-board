@@ -18,7 +18,7 @@ const Home = () => {
     const fetchPosts = async () => {
       const updatedPost = await getPosts();
       if (updatedPost && updatedPost.length > 0) {
-        dispatch({ type: "SET_POSTS", postData: updatedPost });
+        dispatch({ type: "SET_POSTS", payload: updatedPost });
       }
     };
     fetchPosts();
@@ -28,7 +28,7 @@ const Home = () => {
     const fetchToDos = async () => {
       const updatedToDos = await getToDos();
       if (updatedToDos && updatedToDos.length > 0) {
-        dispatch({ type: "SET_TODOS", toDoData: updatedToDos });
+        dispatch({ type: "SET_TODOS", payload: updatedToDos });
       }
     };
     fetchToDos();
