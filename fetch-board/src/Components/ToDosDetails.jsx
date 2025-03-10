@@ -3,13 +3,15 @@ import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 
 const ToDos = () => {
-  const { getSingleToDos, setSingleToDos, singleToDos } = useContext(MyContext);
+  const { getSingleToDos, singleToDos, dispatch } = useContext(MyContext);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchSingleToDos = async () => {
       const updatedSingleToDos = await getSingleToDos(id);
-      setSingleToDos(updatedSingleToDos);
+      if (updatedSingleToDos) {
+        dispatch({ type: "SET_SINGLETODOS", payload: updatedSingleToDos });
+      }
     };
     fetchSingleToDos();
   }, []);
@@ -19,11 +21,11 @@ const ToDos = () => {
 
       <p>
         <b> ToDos Title : </b>
-        {singleToDos?.data?.todo}
+        {singleToDos?.todo}
       </p>
       <p>
         <b>ToDos userId: </b>
-        {singleToDos?.data?.userId}
+        {singleToDos?.userId}
       </p>
     </div>
   );

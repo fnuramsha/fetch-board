@@ -22,17 +22,18 @@ const getSinglePosts = async (id) => {
   return singlePost.data;
 };
 
-// const getSingleToDos = async (id) => {
-//   const singlePost = await axios.get(`https://dummyjson.com/todos/${id}`);
-//   console.log("ToDo id and Single ToDos", id, singleToDos);
-//   return singlePost;
-// };
+const getSingleToDos = async (id) => {
+  const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
+  console.log("ToDo id and Single ToDos", id, singleToDos.data);
+  return singleToDos.data;
+};
 
 const initialState = {
   selectedResource: "",
   posts: [],
   toDos: [],
-  singlePost: {},
+  singlePost: [],
+  singleToDos: [],
 };
 
 const reducer = (state, { type, payload }) => {
@@ -57,6 +58,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         singlePost: payload,
       };
+    case "SET_SINGLETODOS":
+      return {
+        ...state,
+        singleToDos: payload,
+      };
     default:
       return state;
   }
@@ -64,8 +70,6 @@ const reducer = (state, { type, payload }) => {
 
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  //const [singlePostVal, setSinglePostVal] = useState([]);
-  const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
 
   // const [currentPage, setCurrentPage] = useState(1);
@@ -138,9 +142,8 @@ const MyProvider = ({ children }) => {
     dispatch,
     getSinglePosts,
     singlePost: state.singlePost,
-    // getSingleToDos,
-    singleToDos,
-    setSingleToDos,
+    singleToDos: state.singleToDos,
+    getSingleToDos,
     selectedPage,
     setSelectedPage,
   };
