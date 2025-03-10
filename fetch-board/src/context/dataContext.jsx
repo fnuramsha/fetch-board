@@ -17,23 +17,22 @@ const getToDos = async () => {
 };
 
 const getSinglePosts = async (id) => {
-  const singlePostVal = await axios.get(`https://dummyjson.com/posts/${id}`);
-  console.log("Post Id", id);
-  console.log(singlePostVal);
-
-  return singlePostVal;
+  const singlePost = await axios.get(`https://dummyjson.com/posts/${id}`);
+  console.log("I am single Post", singlePost.data);
+  return singlePost.data;
 };
 
-const getSingleToDos = async (id) => {
-  const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
-  console.log("ToDo id and Single ToDos", id, singleToDos);
-  return singleToDos;
-};
+// const getSingleToDos = async (id) => {
+//   const singlePost = await axios.get(`https://dummyjson.com/todos/${id}`);
+//   console.log("ToDo id and Single ToDos", id, singleToDos);
+//   return singlePost;
+// };
 
 const initialState = {
   selectedResource: "",
   posts: [],
   toDos: [],
+  singlePost: {},
 };
 
 const reducer = (state, { type, payload }) => {
@@ -53,6 +52,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         toDos: payload,
       };
+    case "SET_SINGLEPOSTS":
+      return {
+        ...state,
+        singlePost: payload,
+      };
     default:
       return state;
   }
@@ -60,7 +64,7 @@ const reducer = (state, { type, payload }) => {
 
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [singlePostVal, setSinglePostVal] = useState([]);
+  //const [singlePostVal, setSinglePostVal] = useState([]);
   const [singleToDos, setSingleToDos] = useState([]);
   const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
 
@@ -133,9 +137,8 @@ const MyProvider = ({ children }) => {
     displayData,
     dispatch,
     getSinglePosts,
-    singlePostVal,
-    setSinglePostVal,
-    getSingleToDos,
+    singlePost: state.singlePost,
+    // getSingleToDos,
     singleToDos,
     setSingleToDos,
     selectedPage,

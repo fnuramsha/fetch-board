@@ -3,34 +3,38 @@ import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 
 const Post = () => {
-  const { getSinglePosts, singlePostVal, setSinglePostVal } =
-    useContext(MyContext);
+  const { getSinglePosts, singlePost, state, dispatch } = useContext(MyContext);
+  console.log("I am single post outside of return", singlePost);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchSinglePost = async () => {
       const updatedSinglePost = await getSinglePosts(id);
-      setSinglePostVal(updatedSinglePost);
+      console.log("I am updatedsingle post", updatedSinglePost);
+      if (updatedSinglePost) {
+        dispatch({ type: "SET_SINGLEPOSTS", payload: updatedSinglePost });
+      }
     };
     fetchSinglePost();
   }, [id]);
 
+  console.log("checking what's in singlePost", singlePost?.title);
   return (
     <div>
       <h4>Post Information: </h4>
 
       <p>
         <b> Post Title : </b>
-        {singlePostVal?.data?.title}
+        {singlePost?.title}
       </p>
       <p>
         <b>Post Body: </b>
-        {singlePostVal?.data?.body}
+        {singlePost?.body}
       </p>
       <p>
         {" "}
         <b>Views: </b>
-        {singlePostVal?.data?.views}
+        {singlePost?.views}
       </p>
     </div>
   );
