@@ -1,24 +1,21 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
-import { MyContext } from "../context/dataContext";
 import { Link, useLocation } from "react-router-dom";
 
 const Breadcrumb = () => {
-  const { selectedPage } = useContext(MyContext);
   const location = useLocation(); // returns the current location
 
   let breadCrumb = null;
   if (location?.pathname?.includes("/todo/")) {
-    breadCrumb = "ToDoSInformation";
+    breadCrumb = "ToDos/ToDoSInformation";
   } else if (location?.pathname?.includes("/post")) {
-    breadCrumb = "PostsInformation";
+    breadCrumb = "Posts/PostsInformation";
   }
   if (breadCrumb != null) {
     return (
       <nav aria-label="breadcrumb">
         <ol className="breadcrumb">
           <li className="breadcrumb-item active" aria-current="page">
-            <Link to="/">Home</Link>/{selectedPage}/{breadCrumb}
+            <Link to="/">Home</Link>/{breadCrumb}
           </li>
         </ol>
       </nav>

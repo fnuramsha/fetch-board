@@ -70,7 +70,6 @@ const reducer = (state, { type, payload }) => {
 
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const [selectedPage, setSelectedPage] = useState(""); // For Breadcrumb
 
   // const [currentPage, setCurrentPage] = useState(1);
   // const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -144,8 +143,6 @@ const MyProvider = ({ children }) => {
     singlePost: state.singlePost,
     singleToDos: state.singleToDos,
     getSingleToDos,
-    selectedPage,
-    setSelectedPage,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
