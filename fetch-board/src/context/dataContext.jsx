@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const MyContext = createContext();
 
 const getPosts = async () => {
-  const posts = await axios.get("https://dummyjson.com/posts");
+  const posts = await axios.get("https://dummyjson.com/posts?limit=5&skip=1");
   return posts.data.posts;
 };
 
@@ -34,6 +34,7 @@ const initialState = {
   toDos: [],
   singlePost: [],
   singleToDos: [],
+  paginatedItems: [],
 };
 
 const reducer = (state, { type, payload }) => {
