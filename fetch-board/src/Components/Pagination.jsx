@@ -3,11 +3,14 @@ import ReactPaginate from "react-paginate";
 import { MyContext } from "../context/dataContext";
 
 const Pagination = () => {
-  const { paginatedItems } = useContext(MyContext);
+  const { getPosts, currentPage, dispatch } = useContext(MyContext);
 
-  const handlePageClick = (data) => {
-    console.log(data.selected);
+  const handlePageClick = async (data) => {
+    let currentPage = data.selected + 1;
+    //const updatedPage = await getPosts(currentPage);
+    dispatch({ type: "SET_CURRENT_PAGE", payload: currentPage });
   };
+
   return (
     <div>
       <ReactPaginate
@@ -28,6 +31,7 @@ const Pagination = () => {
         breakClassName={"page-item"}
         breakLinkClassName={"page-link"}
         activeClassName={"active"}
+        forcePage={currentPage - 1}
       />
     </div>
   );

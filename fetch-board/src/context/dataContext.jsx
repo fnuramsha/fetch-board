@@ -6,8 +6,10 @@ import { Link } from "react-router-dom";
 
 const MyContext = createContext();
 
-const getPosts = async () => {
-  const posts = await axios.get("https://dummyjson.com/posts?limit=5&skip=1");
+const getPosts = async (currentPage) => {
+  const posts = await axios.get(
+    `https://dummyjson.com/posts?_page=${currentPage}&limit=5&skip=1`
+  );
   return posts.data.posts;
 };
 
@@ -35,6 +37,7 @@ const initialState = {
   singlePost: [],
   singleToDos: [],
   paginatedItems: [],
+  currentPage: 1,
 };
 
 const reducer = (state, { type, payload }) => {
@@ -63,6 +66,11 @@ const reducer = (state, { type, payload }) => {
       return {
         ...state,
         singleToDos: payload,
+      };
+    case "SET_CURRENT_PAGE":
+      return {
+        ...state,
+        currentPage: payload,
       };
     default:
       return state;
@@ -144,6 +152,7 @@ const MyProvider = ({ children }) => {
     singlePost: state.singlePost,
     singleToDos: state.singleToDos,
     getSingleToDos,
+    currentPage: state.currentPage,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

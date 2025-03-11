@@ -11,18 +11,19 @@ const options = [
 ];
 
 const Home = () => {
-  const { getPosts, getToDos, displayData, state, dispatch } =
+  const { getPosts, getToDos, displayData, state, dispatch, currentPage } =
     useContext(MyContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const updatedPost = await getPosts();
+      console.log("I am current page in useEffect", currentPage);
+      const updatedPost = await getPosts(currentPage);
       if (updatedPost && updatedPost.length > 0) {
         dispatch({ type: "SET_POSTS", payload: updatedPost });
       }
     };
     fetchPosts();
-  }, []);
+  }, [currentPage]);
 
   useEffect(() => {
     const fetchToDos = async () => {
