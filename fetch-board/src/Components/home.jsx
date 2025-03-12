@@ -11,8 +11,15 @@ const options = [
 ];
 
 const Home = () => {
-  const { getPosts, getToDos, displayData, state, dispatch, currentPage } =
-    useContext(MyContext);
+  const {
+    getPosts,
+    getToDos,
+    displayData,
+    state,
+    dispatch,
+    currentPage,
+    // selectedResource,
+  } = useContext(MyContext);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -24,6 +31,18 @@ const Home = () => {
     };
     fetchPosts();
   }, [currentPage]);
+
+  // useEffect(() => {
+  //   if (selectedResource === "Posts") {
+  //     const fetchPosts = async () => {
+  //       const updatedPosts = await getPosts(currentPage);
+  //       if (updatedPosts && updatedPosts.length > 0) {
+  //         dispatch({ type: "SET_POSTS", payload: updatedPosts });
+  //       }
+  //     };
+  //     fetchPosts();
+  //   }
+  // }, [currentPage, selectedResource]); // Added selectedResource
 
   useEffect(() => {
     const fetchToDos = async () => {

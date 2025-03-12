@@ -8,7 +8,8 @@ const MyContext = createContext();
 
 const getPosts = async (currentPage) => {
   const posts = await axios.get(
-    `https://dummyjson.com/posts?_page=${currentPage}&limit=5&skip=1`
+    // `https://dummyjson.com/posts?_page=${currentPage}&limit=10&skip=1`
+    `https://dummyjson.com/posts?limit=5&skip=${(currentPage - 1) * 5}`
   );
   return posts.data.posts;
 };
@@ -153,6 +154,7 @@ const MyProvider = ({ children }) => {
     singleToDos: state.singleToDos,
     getSingleToDos,
     currentPage: state.currentPage,
+    selectedResource: state.selectedResource,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

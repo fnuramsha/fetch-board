@@ -7,7 +7,6 @@ const Pagination = () => {
 
   const handlePageClick = async (data) => {
     let currentPage = data.selected + 1;
-    //const updatedPage = await getPosts(currentPage);
     dispatch({ type: "SET_CURRENT_PAGE", payload: currentPage });
   };
 
