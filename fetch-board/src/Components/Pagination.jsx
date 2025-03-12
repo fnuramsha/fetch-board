@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import { MyContext } from "../context/dataContext";
 
 const Pagination = () => {
-  const { getPosts, currentPage, dispatch } = useContext(MyContext);
+  const { currentPage, dispatch } = useContext(MyContext);
 
   const handlePageClick = async (data) => {
     let currentPage = data.selected + 1;

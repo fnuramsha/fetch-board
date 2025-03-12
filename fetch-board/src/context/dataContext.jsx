@@ -8,14 +8,15 @@ const MyContext = createContext();
 
 const getPosts = async (currentPage) => {
   const posts = await axios.get(
-    // `https://dummyjson.com/posts?_page=${currentPage}&limit=10&skip=1`
     `https://dummyjson.com/posts?limit=5&skip=${(currentPage - 1) * 5}`
   );
   return posts.data.posts;
 };
 
-const getToDos = async () => {
-  const toDos = await axios.get("https://dummyjson.com/todos");
+const getToDos = async (currentPage) => {
+  const toDos = await axios.get(
+    `https://dummyjson.com/todos?limit=5&skip=${(currentPage - 1) * 5}`
+  );
   return toDos.data.todos;
 };
 
@@ -80,26 +81,6 @@ const reducer = (state, { type, payload }) => {
 
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
-
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [rowsPerPage, setRowsPerPage] = useState(10);
-  // const indexOfLastItem = currentPage * rowsPerPage;
-  // const indexOfFirstItem = indexOfLastItem - rowsPerPage;
-  // const currentPosts = initialPostVal?.data?.posts?.slice(
-  //   indexOfFirstItem,
-  //   indexOfLastItem
-  // );
-  // const currentToDos = initialToDosVal?.data?.todos?.slice(
-  //   indexOfFirstItem,
-  //   indexOfLastItem
-  // );
-
-  // const totalPosts = Math.ceil(
-  //   initialPostVal?.data?.posts.length / rowsPerPage
-  // );
-  // const totalTodos = Math.ceil(
-  //   initialToDosVal?.data?.todos.length / rowsPerPage
-  // );
 
   const displayData = () => {
     if (state.selectedResource === "Posts") {

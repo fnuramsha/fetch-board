@@ -32,27 +32,15 @@ const Home = () => {
     fetchPosts();
   }, [currentPage]);
 
-  // useEffect(() => {
-  //   if (selectedResource === "Posts") {
-  //     const fetchPosts = async () => {
-  //       const updatedPosts = await getPosts(currentPage);
-  //       if (updatedPosts && updatedPosts.length > 0) {
-  //         dispatch({ type: "SET_POSTS", payload: updatedPosts });
-  //       }
-  //     };
-  //     fetchPosts();
-  //   }
-  // }, [currentPage, selectedResource]); // Added selectedResource
-
   useEffect(() => {
     const fetchToDos = async () => {
-      const updatedToDos = await getToDos();
+      const updatedToDos = await getToDos(currentPage);
       if (updatedToDos && updatedToDos.length > 0) {
         dispatch({ type: "SET_TODOS", payload: updatedToDos });
       }
     };
     fetchToDos();
-  }, []);
+  }, [currentPage]);
 
   return (
     <div className="container-fluid vh-100">
