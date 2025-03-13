@@ -30,7 +30,6 @@ const Pagination = () => {
         breakClassName={"page-item"}
         breakLinkClassName={"page-link"}
         activeClassName={"active"}
-        forcePage={currentPage - 1}
       />
     </div>
   );
