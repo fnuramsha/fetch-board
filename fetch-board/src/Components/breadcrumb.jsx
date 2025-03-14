@@ -12,8 +12,8 @@ const Breadcrumb = () => {
   }
   if (breadCrumb != null) {
     return (
-      <nav aria-label="breadcrumb">
-        <ol className="breadcrumb">
+      <nav aria-label="breadcrumb" className="px-2">
+        <ol className="breadcrumb mr-80">
           <li className="breadcrumb-item active" aria-current="page">
             <Link to="/">Home</Link>/{breadCrumb}
           </li>
@@ -22,35 +22,9 @@ const Breadcrumb = () => {
     );
   }
 
-  // if (location?.pathname?.includes("/todo/")) {
-  //   return (
-  //     <nav aria-label="breadcrumb">
-  //       <ol className="breadcrumb">
-  //         <li className="breadcrumb-item active" aria-current="page">
-  //           Home/{selectedPage}/ToDoSInformation
-  //         </li>
-  //       </ol>
-  //     </nav>
-  //   );
-  // } else if (location?.pathname?.includes("/post")) {
-  //   return (
-  //     <nav aria-label="breadcrumb">
-  //       <ol className="breadcrumb">
-  //         <li
-  //           className="breadcrumb-item active"
-  //           aria-current="page"
-  //           onClick={handleClick}
-  //         >
-  //           Home/{selectedPage}/PostsInformation
-  //         </li>
-  //       </ol>
-  //     </nav>
-  //   );
-  // }
-
   return (
     <>
-      <nav aria-label="breadcrumb">
+      <nav aria-label="breadcrumb" className="px-4">
         <ol className="breadcrumb">
           <li className="breadcrumb-item active" aria-current="page">
             <Link to="/"> Home</Link>

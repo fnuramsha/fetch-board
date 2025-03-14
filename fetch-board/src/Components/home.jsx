@@ -48,7 +48,7 @@ const Home = () => {
 
   return (
     <Container fluid="md">
-      <Row>
+      <Row className="justify-content-md-center">
         <Col>
           <div className=" vh-100">
             <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
