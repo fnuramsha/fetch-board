@@ -53,7 +53,7 @@ const Home = () => {
           <div className=" vh-100">
             <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
               {/* React bootstrap dropdown */}
-              <DropdownButton
+              {/* <DropdownButton
                 id="dropdown-basic-button"
                 variant="secondary"
                 title={state?.value || "Resources"}
@@ -69,38 +69,53 @@ const Home = () => {
                     {option.label}{" "}
                   </Dropdown.Item>
                 ))}
-              </DropdownButton>
+              </DropdownButton> */}
 
               {/* for border */}
-              <div className="col-10 main-content p-4">
-                <div className="border border-3 p-3 mt-3">
-                  <div className="input-group">
+
+              <div className="d-flex gap-2">
+                <DropdownButton
+                  id="dropdown-basic-button"
+                  variant="secondary"
+                  title={state?.value || "Resources"}
+                >
+                  {options.map((option, index) => (
+                    <Dropdown.Item
+                      key={index}
+                      onClick={() => {
+                        dispatch({
+                          type: "SET_OPTION",
+                          payload: option.label,
+                        });
+                      }}
+                    >
+                      {" "}
+                      {option.label}{" "}
+                    </Dropdown.Item>
+                  ))}
+                </DropdownButton>
+
+                <div className="input-group">
+                  <form className="d-flex" role="search">
                     <input
+                      className="form-control me-2"
                       type="search"
-                      className="form-control rounded"
                       placeholder="Search"
                       aria-label="Search"
-                      aria-describedby="search-addon"
                     />
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary"
-                      data-mdb-ripple-init
-                    >
-                      search
+                    <button className="btn btn-outline-success" type="submit">
+                      Search
                     </button>
-                  </div>
-                  <div className="col-12 main-content p-6">
-                    <div className="border border-6 p-3 mt-3">
-                      <h3 className="text-decoration-underline">
-                        Posts and ToDos
-                      </h3>
-                      <div>{displayData()}</div>
-                    </div>
-                  </div>
-                  <Pagination />
+                  </form>
                 </div>
               </div>
+              <div className="col-12 main-content p-6">
+                <div className="border border-6 p-3 mt-3">
+                  <h3 className="text-decoration-underline">Posts and ToDos</h3>
+                  <div>{displayData()}</div>
+                </div>
+              </div>
+              <Pagination />
             </div>
           </div>
         </Col>
