@@ -93,13 +93,23 @@ const MyProvider = ({ children }) => {
           ))} */}
 
           {state.posts?.map((post, index) => (
-            <div key={index}>
-              {" "}
-              <h4>
-                <Link to={`/post/${post.id}`}>
-                  {post.title} <b>Views:</b> {post.views}
-                </Link>
-              </h4>
+            // <div key={index}>
+            //   {" "}
+            //   <h4>
+            //     <Link to={`/post/${post.id}`}>
+            //       {post.title} <b>Views:</b> {post.views}
+            //     </Link>
+            //   </h4>
+            // </div>
+            <div key={index} className="card" style={{ width: "18rem" }}>
+              <img src="" className="card-img-top" alt="..."></img>
+              <div className="card-body">
+                <h5 className="card-title">{post.id}</h5>
+                <p className="card-text">{post.title}</p>
+                <a href="#" className="btn btn-primary">
+                  Views: {post.views}
+                </a>
+              </div>
             </div>
           ))}
         </>
