@@ -3,6 +3,7 @@ import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import postImage from "../Components/Images/posts.jpeg";
 
 const MyContext = createContext();
 
@@ -102,9 +103,9 @@ const MyProvider = ({ children }) => {
             //   </h4>
             // </div>
             <div key={index} className="card" style={{ width: "18rem" }}>
-              <img src="" className="card-img-top" alt="..."></img>
+              <img src={postImage} className="card-img-top" alt="..."></img>
               <div className="card-body">
-                <h5 className="card-title">{post.id}</h5>
+                <h5 className="card-title">Post:{post.id}</h5>
                 <p className="card-text">{post.title}</p>
                 <a href="#" className="btn btn-primary">
                   Views: {post.views}
