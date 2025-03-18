@@ -4,19 +4,22 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import postImage from "../Components/Images/posts.jpeg";
+import Col from "react-bootstrap/esm/Col";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/esm/Row";
 
 const MyContext = createContext();
 
 const getPosts = async (currentPage) => {
   const posts = await axios.get(
-    `https://dummyjson.com/posts?limit=5&skip=${(currentPage - 1) * 5}`
+    `https://dummyjson.com/posts?limit=8&skip=${(currentPage - 1) * 8}`
   );
   return posts.data.posts;
 };
 
 const getToDos = async (currentPage) => {
   const toDos = await axios.get(
-    `https://dummyjson.com/todos?limit=5&skip=${(currentPage - 1) * 5}`
+    `https://dummyjson.com/todos?limit=8&skip=${(currentPage - 1) * 8}`
   );
   return toDos.data.todos;
 };
@@ -92,27 +95,33 @@ const MyProvider = ({ children }) => {
               {post.title} <b> Views:</b> {post.views}
             </div>
           ))} */}
+          <Row>
+            {state.posts?.map((post, index) => (
+              // <div key={index}>
+              //   {" "}
+              //   <h4>
+              //     <Link to={`/post/${post.id}`}>
+              //       {post.title} <b>Views:</b> {post.views}
+              //     </Link>
+              //   </h4>
+              // </div>
 
-          {state.posts?.map((post, index) => (
-            // <div key={index}>
-            //   {" "}
-            //   <h4>
-            //     <Link to={`/post/${post.id}`}>
-            //       {post.title} <b>Views:</b> {post.views}
-            //     </Link>
-            //   </h4>
-            // </div>
-            <div key={index} className="card" style={{ width: "18rem" }}>
-              <img src={postImage} className="card-img-top" alt="..."></img>
-              <div className="card-body">
-                <h5 className="card-title">Post:{post.id}</h5>
-                <p className="card-text">{post.title}</p>
-                <a href="#" className="btn btn-primary">
-                  Views: {post.views}
-                </a>
-              </div>
-            </div>
-          ))}
+              <Col sm={3} key={index}>
+                <div className="holder">
+                  <Card>
+                    <Card.Img variant="top" src={postImage} />
+                    <Card.Body>
+                      <Card.Title className="fw-bold text-center">
+                        Post:{post.id}
+                      </Card.Title>
+                      <Card.Text>Title: {post.title}</Card.Text>
+                      <a href={post.views} className="btn btn-primary"></a>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </Col>
+            ))}
+          </Row>
         </>
       );
     } else if (state.selectedResource === "ToDos") {
