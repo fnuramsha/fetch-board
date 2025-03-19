@@ -115,8 +115,10 @@ const MyProvider = ({ children }) => {
                       <Card.Title className="fw-bold text-center">
                         Post:{post.id}
                       </Card.Title>
-                      <Card.Text>Title: {post.title}</Card.Text>
-                      <a href={post.views} className="btn btn-primary"></a>
+                      <Card.Text>
+                        Title: {post.title} Views: {post.views}
+                      </Card.Text>
+                      <Link to={`/post/${post.id}`}>Post Details</Link>
                     </Card.Body>
                   </Card>
                 </div>
@@ -150,7 +152,7 @@ const MyProvider = ({ children }) => {
                         ToDo:{todo.id}
                       </Card.Title>
                       <Card.Text>Title: {todo.todo}</Card.Text>
-                      <a href={todo.views} className="btn btn-primary"></a>
+                      <Link to={`/todo/${todo.id}`}>ToDo Details</Link>
                     </Card.Body>
                   </Card>
                 </div>

@@ -3,7 +3,6 @@ import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import { MyContext } from "../context/dataContext";
 import Pagination from "./Pagination";
-import Button from "react-bootstrap/esm/Button";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -22,6 +21,7 @@ const Home = () => {
     state,
     dispatch,
     currentPage,
+
     // selectedResource,
   } = useContext(MyContext);
 
@@ -47,10 +47,10 @@ const Home = () => {
   }, [currentPage]);
 
   return (
-    <Container fluid="md">
+    <Container fluid="md" className="bg-dark-subtle">
       <Row className="justify-content-md-center">
         <Col>
-          <div className=" vh-100">
+          <div className="vh-100">
             <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
               {/* React bootstrap dropdown */}
               {/* <DropdownButton
@@ -103,7 +103,7 @@ const Home = () => {
                       placeholder="Search"
                       aria-label="Search"
                     />
-                    <button className="btn btn-outline-success" type="submit">
+                    <button className="btn btn-outline-secondary" type="submit">
                       Search
                     </button>
                   </form>
