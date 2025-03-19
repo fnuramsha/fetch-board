@@ -7,6 +7,7 @@ import postImage from "../Components/Images/posts.jpeg";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/esm/Row";
+import todoImage from "../Components/Images/todo.jpg";
 
 const MyContext = createContext();
 
@@ -130,16 +131,32 @@ const MyProvider = ({ children }) => {
           {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
             return <div key={index}> {todo.todo} </div>;
           })} */}
-          {state.toDos?.map((todo, index) => (
-            <div key={index}>
-              <h4>
-                <Link to={`/todo/${todo.id}`}>
-                  {todo.todo}
-                  {/* ToDoDetails */}
-                </Link>
-              </h4>
-            </div>
-          ))}
+          <Row>
+            {state.toDos?.map((todo, index) => (
+              // <div key={index}>
+              //   <h4>
+              //     <Link to={`/todo/${todo.id}`}>
+              //       {todo.todo}
+              //       {/* ToDoDetails */}
+              //     </Link>
+              //   </h4>
+              // </div>
+              <Col sm={3} key={index}>
+                <div className="holder">
+                  <Card>
+                    <Card.Img variant="top" src={todoImage} />
+                    <Card.Body>
+                      <Card.Title className="fw-bold text-center">
+                        ToDo:{todo.id}
+                      </Card.Title>
+                      <Card.Text>Title: {todo.todo}</Card.Text>
+                      <a href={todo.views} className="btn btn-primary"></a>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </Col>
+            ))}
+          </Row>
         </>
       );
     }
