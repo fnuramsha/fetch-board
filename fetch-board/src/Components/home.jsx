@@ -47,7 +47,7 @@ const Home = () => {
   }, [currentPage]);
 
   return (
-    <Container fluid="md" className="bg-dark-subtle">
+    <Container>
       <Row className="justify-content-md-center">
         <Col>
           <div className="vh-100">

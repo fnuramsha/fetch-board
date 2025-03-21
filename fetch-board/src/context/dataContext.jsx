@@ -11,6 +11,15 @@ import todoImage from "../Components/Images/todo.jpg";
 
 const MyContext = createContext();
 
+const getCardImage = (index) => {
+  const images = [
+    "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=3032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    "https://img.freepik.com/free-photo/woman-working-from-home-laptop_53876-132032.jpg?semt=ais_hybrid",
+  ];
+
+  return images[index];
+};
+
 const getPosts = async (currentPage) => {
   const posts = await axios.get(
     `https://dummyjson.com/posts?limit=8&skip=${(currentPage - 1) * 8}`
@@ -91,26 +100,12 @@ const MyProvider = ({ children }) => {
     if (state.selectedResource === "Posts") {
       return (
         <>
-          {/* {initialPostVal?.data?.posts?.map((post, index) => (
-            <div key={index}>
-              {post.title} <b> Views:</b> {post.views}
-            </div>
-          ))} */}
           <Row>
             {state.posts?.map((post, index) => (
-              // <div key={index}>
-              //   {" "}
-              //   <h4>
-              //     <Link to={`/post/${post.id}`}>
-              //       {post.title} <b>Views:</b> {post.views}
-              //     </Link>
-              //   </h4>
-              // </div>
-
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card>
-                    <Card.Img variant="top" src={postImage} />
+                    <Card.Img variant="top" src={getCardImage(index)} />
                     <Card.Body>
                       <Card.Title className="fw-bold text-center">
                         Post:{post.id}
@@ -130,19 +125,8 @@ const MyProvider = ({ children }) => {
     } else if (state.selectedResource === "ToDos") {
       return (
         <>
-          {/* {initialToDosVal?.data?.todos?.map((todo, index) => {
-            return <div key={index}> {todo.todo} </div>;
-          })} */}
           <Row>
             {state.toDos?.map((todo, index) => (
-              // <div key={index}>
-              //   <h4>
-              //     <Link to={`/todo/${todo.id}`}>
-              //       {todo.todo}
-              //       {/* ToDoDetails */}
-              //     </Link>
-              //   </h4>
-              // </div>
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card>
