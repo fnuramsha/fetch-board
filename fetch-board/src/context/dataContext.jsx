@@ -131,11 +131,11 @@ const MyProvider = ({ children }) => {
                       src={getPostImage(index)}
                       style={{ height: "200px" }}
                     />
-                    <Card.Body className="h-100 d-flex flex-column">
+                    <Card.Body style={{ height: "200px" }}>
                       <Card.Title className="fw-bold text-center">
                         Post:{post.id}
                       </Card.Title>
-                      <Card.Text className="flex-grow-1">
+                      <Card.Text>
                         Title: {post.title} Views: {post.views}
                       </Card.Text>
                       <Link to={`/post/${post.id}`}>Post Details</Link>
@@ -154,9 +154,13 @@ const MyProvider = ({ children }) => {
             {state.toDos?.map((todo, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
-                  <Card>
-                    <Card.Img variant="top" src={getTodoImage(index)} />
-                    <Card.Body>
+                  <Card className="h-100">
+                    <Card.Img
+                      variant="top"
+                      src={getTodoImage(index)}
+                      style={{ height: "200px" }}
+                    />
+                    <Card.Body style={{ height: "200px" }}>
                       <Card.Title className="fw-bold text-center">
                         ToDo:{todo.id}
                       </Card.Title>
