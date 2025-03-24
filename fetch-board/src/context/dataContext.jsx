@@ -124,13 +124,18 @@ const MyProvider = ({ children }) => {
             {state.posts?.map((post, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
-                  <Card>
-                    <Card.Img variant="top" src={getPostImage(index)} />
-                    <Card.Body>
+                  <Card className="h-100">
+                    <Card.Img
+                      variant="top"
+                      alt="Card image cap"
+                      src={getPostImage(index)}
+                      style={{ height: "200px" }}
+                    />
+                    <Card.Body className="h-100 d-flex flex-column">
                       <Card.Title className="fw-bold text-center">
                         Post:{post.id}
                       </Card.Title>
-                      <Card.Text>
+                      <Card.Text className="flex-grow-1">
                         Title: {post.title} Views: {post.views}
                       </Card.Text>
                       <Link to={`/post/${post.id}`}>Post Details</Link>
