@@ -177,6 +177,12 @@ const MyProvider = ({ children }) => {
     }
   };
 
+  const searchData = (event) => {
+    event.preventDefault();
+    const searchQuery = event.target.value.toLowerCase();
+    return console.log(searchQuery);
+  };
+
   const values = {
     getPosts,
     getToDos,
@@ -188,6 +194,7 @@ const MyProvider = ({ children }) => {
     getSingleToDos,
     currentPage: state.currentPage,
     selectedResource: state.selectedResource,
+    searchData,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
