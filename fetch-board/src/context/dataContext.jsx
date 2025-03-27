@@ -74,6 +74,7 @@ const initialState = {
   singleToDos: [],
   paginatedItems: [],
   currentPage: 1,
+  searchField: "",
 };
 
 const reducer = (state, { type, payload }) => {
@@ -108,6 +109,11 @@ const reducer = (state, { type, payload }) => {
         ...state,
         currentPage: payload,
       };
+    case "SET_SEARCH_FIELD":
+      return {
+        ...state,
+        searchField: payload,
+      };
     default:
       return state;
   }
@@ -117,11 +123,21 @@ const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const displayData = () => {
+    console.log("I am state.posts", state?.posts);
+
+    const filteredPosts = state?.posts?.filter((post) =>
+      post.title.toLowerCase().includes(state.searchField)
+    );
+
+    const filteredToDos = state?.toDos?.filter((todo) =>
+      todo.todo.toLowerCase().includes(state.searchField)
+    );
+
     if (state.selectedResource === "Posts") {
       return (
         <>
           <Row>
-            {state.posts?.map((post, index) => (
+            {filteredPosts?.map((post, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card className="h-100">
@@ -151,7 +167,7 @@ const MyProvider = ({ children }) => {
       return (
         <>
           <Row>
-            {state.toDos?.map((todo, index) => (
+            {filteredToDos?.map((todo, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card className="h-100">
@@ -178,9 +194,8 @@ const MyProvider = ({ children }) => {
   };
 
   const searchData = (event) => {
-    event.preventDefault();
     const searchQuery = event.target.value.toLowerCase();
-    return console.log(searchQuery);
+    dispatch({ type: "SET_SEARCH_FIELD", payload: searchQuery });
   };
 
   const values = {
@@ -195,6 +210,7 @@ const MyProvider = ({ children }) => {
     currentPage: state.currentPage,
     selectedResource: state.selectedResource,
     searchData,
+    searchField: state.searchField,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

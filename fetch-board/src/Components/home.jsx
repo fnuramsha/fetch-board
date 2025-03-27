@@ -22,6 +22,7 @@ const Home = () => {
     dispatch,
     currentPage,
     searchData,
+    searchField,
 
     // selectedResource,
   } = useContext(MyContext);
@@ -101,14 +102,11 @@ const Home = () => {
                     <input
                       className="form-control me-2"
                       type="search"
-                      placeholder="Search"
-                      aria-label="Search"
+                      placeholder="Type to search..."
+                      value={searchField}
+                      onChange={searchData}
                     />
-                    <button
-                      className="btn btn-outline-secondary"
-                      type="button"
-                      onClick={searchData}
-                    >
+                    <button className="btn btn-outline-secondary" type="button">
                       Search
                     </button>
                   </form>
