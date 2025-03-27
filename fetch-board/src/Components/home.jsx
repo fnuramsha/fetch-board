@@ -23,8 +23,6 @@ const Home = () => {
     currentPage,
     searchData,
     searchField,
-
-    // selectedResource,
   } = useContext(MyContext);
 
   useEffect(() => {
@@ -54,27 +52,6 @@ const Home = () => {
         <Col>
           <div className="vh-100">
             <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
-              {/* React bootstrap dropdown */}
-              {/* <DropdownButton
-                id="dropdown-basic-button"
-                variant="secondary"
-                title={state?.value || "Resources"}
-              >
-                {options.map((option, index) => (
-                  <Dropdown.Item
-                    key={index}
-                    onClick={() => {
-                      dispatch({ type: "SET_OPTION", payload: option.label });
-                    }}
-                  >
-                    {" "}
-                    {option.label}{" "}
-                  </Dropdown.Item>
-                ))}
-              </DropdownButton> */}
-
-              {/* for border */}
-
               <div className="d-flex gap-2">
                 <DropdownButton
                   id="dropdown-basic-button"

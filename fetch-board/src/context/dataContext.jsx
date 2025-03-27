@@ -1,13 +1,11 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import { createContext } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import postImage from "../Components/Images/posts.jpeg";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/esm/Row";
-import todoImage from "../Components/Images/todo.jpg";
 
 const MyContext = createContext();
 
