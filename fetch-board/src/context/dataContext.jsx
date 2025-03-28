@@ -120,14 +120,17 @@ const reducer = (state, { type, payload }) => {
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const displayData = () => {
-    console.log("I am state.posts", state?.posts);
+  const searchData = (e) => {
+    const searchField = e.target.value;
+    dispatch({ type: "SET_SEARCH_FIELD", payload: searchField });
+  };
 
-    const filteredPosts = state?.posts?.filter((post) =>
+  const displayData = () => {
+    const filteredPosts = state.posts?.filter((post) =>
       post.title.toLowerCase().includes(state.searchField)
     );
 
-    const filteredToDos = state?.toDos?.filter((todo) =>
+    const filteredToDos = state.toDos?.filter((todo) =>
       todo.todo.toLowerCase().includes(state.searchField)
     );
 
@@ -135,7 +138,7 @@ const MyProvider = ({ children }) => {
       return (
         <>
           <Row>
-            {filteredPosts?.map((post, index) => (
+            {filteredPosts.map((post, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card className="h-100">
@@ -165,7 +168,7 @@ const MyProvider = ({ children }) => {
       return (
         <>
           <Row>
-            {filteredToDos?.map((todo, index) => (
+            {filteredToDos.map((todo, index) => (
               <Col sm={3} key={index}>
                 <div className="holder">
                   <Card className="h-100">
@@ -191,11 +194,6 @@ const MyProvider = ({ children }) => {
     }
   };
 
-  const searchData = (event) => {
-    const searchQuery = event.target.value.toLowerCase();
-    dispatch({ type: "SET_SEARCH_FIELD", payload: searchQuery });
-  };
-
   const values = {
     getPosts,
     getToDos,
@@ -207,8 +205,8 @@ const MyProvider = ({ children }) => {
     getSingleToDos,
     currentPage: state.currentPage,
     selectedResource: state.selectedResource,
-    searchData,
     searchField: state.searchField,
+    searchData,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

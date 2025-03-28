@@ -21,8 +21,8 @@ const Home = () => {
     state,
     dispatch,
     currentPage,
-    searchData,
     searchField,
+    searchData,
   } = useContext(MyContext);
 
   useEffect(() => {
@@ -45,6 +45,7 @@ const Home = () => {
     };
     fetchToDos();
   }, [currentPage]);
+  console.log("I am searchField", searchField);
 
   return (
     <Container>
