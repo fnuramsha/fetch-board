@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
-import BackgroundImage from "./Images/background-image.jpg";
+import BackgroundImage from "./Images/postImage.jpg";
 
 const Post = () => {
   const { getSinglePosts, singlePost, dispatch } = useContext(MyContext);
