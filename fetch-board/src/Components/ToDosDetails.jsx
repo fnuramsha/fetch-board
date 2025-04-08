@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
-import TodoImage from "./Images/background-image.jpg";
+import BackgroundImage from "./Images/background-image.jpg";
 
 const ToDos = () => {
   const { getSingleToDos, singleToDos, dispatch } = useContext(MyContext);
@@ -16,21 +16,21 @@ const ToDos = () => {
       }
     };
     fetchSingleToDos();
-  }, []);
+  }, [id]);
   return (
     <Container
       fluid
-      className="d-flex justify-content-start"
+      className="d-flex flex-column justify-content-center align-items-center min-vh-100"
       style={{
-        minHeight: "100vh", // Full screen height
-        backgroundImage: `url(${TodoImage})`,
-        backgroundSize: "cover", // Cover the whole screen
+        backgroundImage: `url(${BackgroundImage})`,
+        backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-        backgroundColor: "rgba(255, 255, 255, 0.6)", // White with 70% opacity
-        backgroundBlendMode: "overlay", // Blends color + image to give transparent effect
+        backgroundPosition: "center",
+        backgroundColor: "rgba(255, 255, 255, 0.6)",
+        backgroundBlendMode: "overlay",
       }}
     >
-      <div className="text-center">
+      <div className="text-center w-100 h-100 d-flex flex-column justify-content-center align-items-center">
         <h4>ToDos Information: </h4>
 
         <p>

@@ -2,7 +2,8 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
-import BackgroundImage from "./Images/postImage.jpg";
+// import PostImage from "./Images/postImage.jpg";
+import BackgroundImage from "./Images/background-image.jpg";
 
 const Post = () => {
   const { getSinglePosts, singlePost, dispatch } = useContext(MyContext);
@@ -19,7 +20,7 @@ const Post = () => {
   }, [id]);
 
   return (
-    <Container
+    <div
       fluid
       className="d-flex justify-content-start"
       style={{
@@ -29,6 +30,7 @@ const Post = () => {
         backgroundRepeat: "no-repeat",
         backgroundColor: "rgba(255, 255, 255, 0.6)", // White with 70% opacity
         backgroundBlendMode: "overlay", // Blends color + image to give transparent effect
+        backgroundPosition: "center",
       }}
     >
       <div className="text-center">
@@ -43,7 +45,7 @@ const Post = () => {
           <b>Views:</b> {singlePost?.views}
         </p>
       </div>
-    </Container>
+    </div>
   );
 };
 export default Post;
