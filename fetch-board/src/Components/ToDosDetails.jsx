@@ -33,7 +33,14 @@ const ToDos = () => {
         backgroundBlendMode: "overlay",
       }}
     >
-      <Card style={{ width: "60rem", height: "15rem" }}>
+      <Card
+        style={{
+          width: "60rem",
+          height: "15rem",
+          border: "3px solid #ccc",
+          borderRadius: "20px",
+        }}
+      >
         <Card.Body>
           <Card.Title>ToDos Information</Card.Title> <br />
           <Card.Text>

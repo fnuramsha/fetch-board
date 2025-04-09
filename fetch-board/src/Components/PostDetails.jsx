@@ -34,7 +34,14 @@ const Post = () => {
         backgroundPosition: "center",
       }}
     >
-      <Card style={{ width: "70rem", height: "20rem" }}>
+      <Card
+        style={{
+          width: "70rem",
+          height: "20rem",
+          border: "3px solid #ccc",
+          borderRadius: "20px",
+        }}
+      >
         <Card.Body>
           <Card.Title>Post Information</Card.Title> <br />
           <Card.Text>
