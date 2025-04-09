@@ -3,6 +3,7 @@ import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import BackgroundImage from "./Images/background-image.jpg";
+import Card from "react-bootstrap/Card";
 
 const ToDos = () => {
   const { getSingleToDos, singleToDos, dispatch } = useContext(MyContext);
@@ -32,7 +33,16 @@ const ToDos = () => {
         backgroundBlendMode: "overlay",
       }}
     >
-      <div className="text-center w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>Post Information</Card.Title> <br />
+          <Card.Text>
+            <b>ToDos Title: </b> <br /> {singleToDos?.todo} <br /> <br />
+            <b>Post userId:</b> {singleToDos?.userId} <br /> <br />
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      {/* <div className="text-center w-100 h-100 d-flex flex-column justify-content-center align-items-center">
         <h4>ToDos Information: </h4>
 
         <p>
@@ -43,7 +53,7 @@ const ToDos = () => {
           <b>ToDos userId: </b>
           {singleToDos?.userId}
         </p>
-      </div>
+      </div> */}
     </Container>
   );
 };
