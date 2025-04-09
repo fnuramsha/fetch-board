@@ -20,22 +20,21 @@ const Post = () => {
   }, [id]);
 
   return (
-    <div
+    <Container
+      fluid
+      className="d-flex justify-content-center align-items-center"
       style={{
         minHeight: "100vh", // Full screen height
         width: "100vw",
         backgroundImage: `url(${PostImage})`,
         backgroundSize: "cover", // Cover the whole screen
         backgroundRepeat: "no-repeat",
-        backgroundColor: "rgba(255, 255, 255, 0.6)", // White with 70% opacity
+        backgroundColor: "rgba(255, 255, 255, 0.7)", // White with 70% opacity
         backgroundBlendMode: "overlay", // Blends color + image to give transparent effect
         backgroundPosition: "center",
-        // flex: 1,
-        backgroundsize: "150px",
-        // position: "fixed",
       }}
     >
-      <Card style={{ width: "18rem" }}>
+      <Card style={{ width: "70rem", height: "20rem" }}>
         <Card.Body>
           <Card.Title>Post Information</Card.Title> <br />
           <Card.Text>
@@ -45,7 +44,7 @@ const Post = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-    </div>
+    </Container>
   );
 };
 export default Post;
