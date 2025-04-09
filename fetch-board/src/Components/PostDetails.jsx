@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
-// import PostImage from "./Images/postImage.jpg";
-import BackgroundImage from "./Images/background-image.jpg";
+import PostImage from "./Images/postImage.jpg";
+import Card from "react-bootstrap/Card";
 
 const Post = () => {
   const { getSinglePosts, singlePost, dispatch } = useContext(MyContext);
@@ -20,12 +20,12 @@ const Post = () => {
   }, [id]);
 
   return (
-    <div
+    <Container
       fluid
       className="d-flex justify-content-start"
       style={{
         minHeight: "100vh", // Full screen height
-        backgroundImage: `url(${BackgroundImage})`,
+        backgroundImage: `url(${PostImage})`,
         backgroundSize: "cover", // Cover the whole screen
         backgroundRepeat: "no-repeat",
         backgroundColor: "rgba(255, 255, 255, 0.6)", // White with 70% opacity
@@ -33,19 +33,37 @@ const Post = () => {
         backgroundPosition: "center",
       }}
     >
+      <Card style={{ width: "18rem" }}>
+        <Card.Body>
+          <Card.Title>Post Information</Card.Title> <br />
+          <Card.Text>
+            <b>Post Title: </b> <br /> {singlePost?.title} <br /> <br />
+            <b>Post Body:</b> {singlePost?.body} <br /> <br />
+            <b>Views: {singlePost?.views} </b> <br />
+          </Card.Text>
+        </Card.Body>
+      </Card>
+      {/* //{" "}
       <div className="text-center">
-        <h4>Post Information:</h4>
+        // <h4>Post Information:</h4>
+        //{" "}
         <p>
-          <b>Post Title:</b> {singlePost?.title}
+          // <b>Post Title:</b> {singlePost?.title}
+          //{" "}
         </p>
+        //{" "}
         <p>
-          <b>Post Body:</b> {singlePost?.body}
+          // <b>Post Body:</b> {singlePost?.body}
+          //{" "}
         </p>
+        //{" "}
         <p>
-          <b>Views:</b> {singlePost?.views}
+          // <b>Views:</b> {singlePost?.views}
+          //{" "}
         </p>
-      </div>
-    </div>
+        //{" "}
+      </div> */}
+    </Container>
   );
 };
 export default Post;
