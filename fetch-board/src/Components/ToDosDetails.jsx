@@ -22,6 +22,8 @@ const ToDos = () => {
       fluid
       className="d-flex flex-column justify-content-center align-items-center min-vh-100"
       style={{
+        minHeight: "100vh",
+        width: "100vw",
         backgroundImage: `url(${BackgroundImage})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",

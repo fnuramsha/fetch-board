@@ -20,17 +20,19 @@ const Post = () => {
   }, [id]);
 
   return (
-    <Container
-      fluid
-      className="d-flex justify-content-start"
+    <div
       style={{
         minHeight: "100vh", // Full screen height
+        width: "100vw",
         backgroundImage: `url(${PostImage})`,
         backgroundSize: "cover", // Cover the whole screen
         backgroundRepeat: "no-repeat",
         backgroundColor: "rgba(255, 255, 255, 0.6)", // White with 70% opacity
         backgroundBlendMode: "overlay", // Blends color + image to give transparent effect
         backgroundPosition: "center",
+        // flex: 1,
+        backgroundsize: "150px",
+        // position: "fixed",
       }}
     >
       <Card style={{ width: "18rem" }}>
@@ -63,7 +65,7 @@ const Post = () => {
         </p>
         //{" "}
       </div> */}
-    </Container>
+    </div>
   );
 };
 export default Post;
