@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import PostImage from "./Images/postImage.jpg";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const Post = () => {
   const { getSinglePosts, singlePost, dispatch } = useContext(MyContext);
@@ -44,6 +45,9 @@ const Post = () => {
       >
         <Card.Body>
           <Card.Title>Post Information</Card.Title> <br />
+          <Link to="/" className="ms-auto">
+            Back
+          </Link>
           <Card.Text>
             <b>Post Title: </b> <br /> {singlePost?.title} <br /> <br />
             <b>Post Body:</b> {singlePost?.body} <br /> <br />

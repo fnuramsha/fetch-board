@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import BackgroundImage from "./Images/todos.jpg";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom";
 
 const ToDos = () => {
   const { getSingleToDos, singleToDos, dispatch } = useContext(MyContext);
@@ -43,6 +44,9 @@ const ToDos = () => {
       >
         <Card.Body>
           <Card.Title>ToDos Information</Card.Title> <br />
+          <Link to="/" className="ms-auto">
+            Back
+          </Link>
           <Card.Text>
             <b>ToDos Title: </b> <br /> {singleToDos?.todo} <br /> <br />
             <b>ToDos userId:</b> {singleToDos?.userId} <br /> <br />
