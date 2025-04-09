@@ -45,26 +45,6 @@ const Post = () => {
           </Card.Text>
         </Card.Body>
       </Card>
-      {/* //{" "}
-      <div className="text-center">
-        // <h4>Post Information:</h4>
-        //{" "}
-        <p>
-          // <b>Post Title:</b> {singlePost?.title}
-          //{" "}
-        </p>
-        //{" "}
-        <p>
-          // <b>Post Body:</b> {singlePost?.body}
-          //{" "}
-        </p>
-        //{" "}
-        <p>
-          // <b>Views:</b> {singlePost?.views}
-          //{" "}
-        </p>
-        //{" "}
-      </div> */}
     </div>
   );
 };
