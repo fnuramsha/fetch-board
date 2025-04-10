@@ -44,11 +44,11 @@ const ToDos = () => {
       >
         <Card.Body>
           <div className="d-flex">
+            <Card.Title>ToDos Information</Card.Title>
             <Link to="/" className="ms-auto link-dark">
               Back
             </Link>
           </div>{" "}
-          <Card.Title>ToDos Information</Card.Title>
           <Card.Text>
             <b>ToDos Title: </b> <br /> {singleToDos?.todo} <br /> <br />
             <b>ToDos userId:</b> {singleToDos?.userId} <br /> <br />
