@@ -155,7 +155,9 @@ const MyProvider = ({ children }) => {
                       <Card.Text>
                         Title: {post.title} Views: {post.views}
                       </Card.Text>
-                      <Link to={`/post/${post.id}`}>Post Details</Link>
+                      <Link to={`/post/${post.id}`} className="link-dark">
+                        Post Details
+                      </Link>
                     </Card.Body>
                   </Card>
                 </div>
@@ -182,7 +184,9 @@ const MyProvider = ({ children }) => {
                         ToDo:{todo.id}
                       </Card.Title>
                       <Card.Text>Title: {todo.todo}</Card.Text>
-                      <Link to={`/todo/${todo.id}`}>ToDo Details</Link>
+                      <Link to={`/todo/${todo.id}`} className="link-dark">
+                        ToDo Details
+                      </Link>
                     </Card.Body>
                   </Card>
                 </div>

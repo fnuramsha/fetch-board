@@ -44,10 +44,12 @@ const Post = () => {
         }}
       >
         <Card.Body>
-          <Card.Title>Post Information</Card.Title> <br />
-          <Link to="/" className="ms-auto">
-            Back
-          </Link>
+          <div className="d-flex">
+            <Link to="/" className="ms-auto link-dark">
+              Back
+            </Link>
+          </div>
+          <Card.Title>Post Information</Card.Title>
           <Card.Text>
             <b>Post Title: </b> <br /> {singlePost?.title} <br /> <br />
             <b>Post Body:</b> {singlePost?.body} <br /> <br />

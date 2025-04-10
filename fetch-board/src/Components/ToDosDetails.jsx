@@ -43,10 +43,12 @@ const ToDos = () => {
         }}
       >
         <Card.Body>
-          <Card.Title>ToDos Information</Card.Title> <br />
-          <Link to="/" className="ms-auto">
-            Back
-          </Link>
+          <div className="d-flex">
+            <Link to="/" className="ms-auto link-dark">
+              Back
+            </Link>
+          </div>{" "}
+          <Card.Title>ToDos Information</Card.Title>
           <Card.Text>
             <b>ToDos Title: </b> <br /> {singleToDos?.todo} <br /> <br />
             <b>ToDos userId:</b> {singleToDos?.userId} <br /> <br />
