@@ -5,10 +5,17 @@ import Container from "react-bootstrap/esm/Container";
 import PostImage from "./Images/postImage.jpg";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const Post = () => {
-  const { getSinglePosts, singlePost, dispatch } = useContext(MyContext);
+  const { singlePost, dispatch } = useContext(MyContext);
   const { id } = useParams();
+
+  const getSinglePosts = async (id) => {
+    const singlePost = await axios.get(`https://dummyjson.com/posts/${id}`);
+    console.log("I am single Post", singlePost.data);
+    return singlePost.data;
+  };
 
   useEffect(() => {
     const fetchSinglePost = async () => {

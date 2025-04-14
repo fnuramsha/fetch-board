@@ -1,11 +1,11 @@
 import { useContext, useEffect } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
-import { MyContext } from "../context/dataContext";
-import Pagination from "./Pagination";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import { MyContext } from "../context/dataContext";
+import Pagination from "./Pagination";
 
 const options = [
   { label: "Resources", value: 0 },
@@ -34,7 +34,7 @@ const Home = () => {
       }
     };
     fetchPosts();
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 
   useEffect(() => {
     const fetchToDos = async () => {

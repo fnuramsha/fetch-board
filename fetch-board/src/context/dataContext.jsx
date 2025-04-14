@@ -52,11 +52,11 @@ const getToDos = async (currentPage) => {
   return toDos.data.todos;
 };
 
-const getSinglePosts = async (id) => {
-  const singlePost = await axios.get(`https://dummyjson.com/posts/${id}`);
-  console.log("I am single Post", singlePost.data);
-  return singlePost.data;
-};
+// const getSinglePosts = async (id) => {
+//   const singlePost = await axios.get(`https://dummyjson.com/posts/${id}`);
+//   console.log("I am single Post", singlePost.data);
+//   return singlePost.data;
+// };
 
 const getSingleToDos = async (id) => {
   const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
@@ -203,7 +203,7 @@ const MyProvider = ({ children }) => {
     getToDos,
     displayData,
     dispatch,
-    getSinglePosts,
+    // getSinglePosts,
     singlePost: state.singlePost,
     singleToDos: state.singleToDos,
     getSingleToDos,
