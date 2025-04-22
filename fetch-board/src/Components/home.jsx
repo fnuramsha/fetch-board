@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import { MyContext } from "../context/dataContext";
 import Pagination from "./Pagination";
+import GetPost from "./getPost";
 
 const options = [
   { label: "Resources", value: 0 },
@@ -15,37 +16,36 @@ const options = [
 
 const Home = () => {
   const {
-    getPosts,
-    getToDos,
-    displayData,
+    // getToDos,
+    // displayData,
     state,
     dispatch,
-    currentPage,
+    // currentPage,
     searchField,
     searchData,
   } = useContext(MyContext);
 
-  useEffect(() => {
-    const fetchPosts = async () => {
-      console.log("I am current page in useEffect", currentPage);
-      const updatedPost = await getPosts(currentPage);
-      if (updatedPost && updatedPost.length > 0) {
-        dispatch({ type: "SET_POSTS", payload: updatedPost });
-      }
-    };
-    fetchPosts();
-  }, [currentPage, dispatch]);
+  // useEffect(() => {
+  //   const fetchPosts = async () => {
+  //     console.log("I am current page in useEffect", currentPage);
+  //     const updatedPost = await getPosts(currentPage);
+  //     if (updatedPost && updatedPost.length > 0) {
+  //       dispatch({ type: "SET_POSTS", payload: updatedPost });
+  //     }
+  //   };
+  //   fetchPosts();
+  // }, [currentPage, dispatch]);
 
-  useEffect(() => {
-    const fetchToDos = async () => {
-      const updatedToDos = await getToDos(currentPage);
-      if (updatedToDos && updatedToDos.length > 0) {
-        dispatch({ type: "SET_TODOS", payload: updatedToDos });
-      }
-    };
-    fetchToDos();
-  }, [currentPage]);
-  console.log("I am searchField", searchField);
+  // useEffect(() => {
+  //   const fetchToDos = async () => {
+  //     const updatedToDos = await getToDos(currentPage);
+  //     if (updatedToDos && updatedToDos.length > 0) {
+  //       dispatch({ type: "SET_TODOS", payload: updatedToDos });
+  //     }
+  //   };
+  //   fetchToDos();
+  // }, [currentPage]);
+  // console.log("I am searchField", searchField);
 
   return (
     <Container>
@@ -93,7 +93,10 @@ const Home = () => {
               <div className="col-12 main-content p-6">
                 <div className="border border-6 p-3 mt-3">
                   <h3 className="text-decoration-underline">Posts and ToDos</h3>
-                  <div>{displayData()}</div>
+                  {/* <div>{displayData()}</div> */}
+                  <div>
+                    <GetPost />
+                  </div>
                 </div>
               </div>
               <Pagination />

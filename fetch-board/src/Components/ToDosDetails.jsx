@@ -5,10 +5,17 @@ import Container from "react-bootstrap/esm/Container";
 import BackgroundImage from "./Images/todos.jpg";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const ToDos = () => {
-  const { getSingleToDos, singleToDos, dispatch } = useContext(MyContext);
+  const { singleToDos, dispatch } = useContext(MyContext);
   const { id } = useParams();
+
+  const getSingleToDos = async (id) => {
+    const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
+    console.log("ToDo id and Single ToDos", id, singleToDos.data);
+    return singleToDos.data;
+  };
 
   useEffect(() => {
     const fetchSingleToDos = async () => {
@@ -18,7 +25,7 @@ const ToDos = () => {
       }
     };
     fetchSingleToDos();
-  }, [id]);
+  }, [id, dispatch]);
   return (
     <Container
       fluid

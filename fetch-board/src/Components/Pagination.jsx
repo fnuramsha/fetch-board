@@ -19,7 +19,7 @@ const Pagination = () => {
         breakAriaLabels={"..."}
         pageCount={10}
         marginPagesDisplayed={1}
-        pageRangeDisplayed={3}
+        pageRangeDisplayed={1}
         onPageChange={handlePageClick}
         containerClassName={"pagination justify-content-center"}
         pageClassName={"page-item"}

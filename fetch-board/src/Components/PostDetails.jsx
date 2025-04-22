@@ -25,7 +25,7 @@ const Post = () => {
       }
     };
     fetchSinglePost();
-  }, [id]);
+  }, [id, dispatch]);
 
   return (
     <Container

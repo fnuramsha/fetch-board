@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import Col from "react-bootstrap/esm/Col";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/esm/Row";
+import GetPost from "../Components/getPost";
 
 const MyContext = createContext();
 
@@ -38,19 +39,19 @@ const getTodoImage = (index) => {
   return images[index];
 };
 
-const getPosts = async (currentPage) => {
-  const posts = await axios.get(
-    `https://dummyjson.com/posts?limit=8&skip=${(currentPage - 1) * 8}`
-  );
-  return posts.data.posts;
-};
+// const getPosts = async (currentPage) => {
+//   const posts = await axios.get(
+//     `https://dummyjson.com/posts?limit=8&skip=${(currentPage - 1) * 8}`
+//   );
+//   return posts.data.posts;
+// };
 
-const getToDos = async (currentPage) => {
-  const toDos = await axios.get(
-    `https://dummyjson.com/todos?limit=8&skip=${(currentPage - 1) * 8}`
-  );
-  return toDos.data.todos;
-};
+// const getToDos = async (currentPage) => {
+//   const toDos = await axios.get(
+//     `https://dummyjson.com/todos?limit=8&skip=${(currentPage - 1) * 8}`
+//   );
+//   return toDos.data.todos;
+// };
 
 // const getSinglePosts = async (id) => {
 //   const singlePost = await axios.get(`https://dummyjson.com/posts/${id}`);
@@ -58,11 +59,11 @@ const getToDos = async (currentPage) => {
 //   return singlePost.data;
 // };
 
-const getSingleToDos = async (id) => {
-  const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
-  console.log("ToDo id and Single ToDos", id, singleToDos.data);
-  return singleToDos.data;
-};
+// const getSingleToDos = async (id) => {
+//   const singleToDos = await axios.get(`https://dummyjson.com/todos/${id}`);
+//   console.log("ToDo id and Single ToDos", id, singleToDos.data);
+//   return singleToDos.data;
+// };
 
 const initialState = {
   selectedResource: "",
@@ -125,92 +126,95 @@ const MyProvider = ({ children }) => {
     dispatch({ type: "SET_SEARCH_FIELD", payload: searchField });
   };
 
-  const displayData = () => {
-    const filteredPosts = state.posts?.filter((post) =>
-      post.title.toLowerCase().includes(state.searchField)
-    );
+  // const displayData = () => {
+  //   const filteredPosts = state.posts?.filter((post) =>
+  //     post.title.toLowerCase().includes(state.searchField)
+  //   );
 
-    const filteredToDos = state.toDos?.filter((todo) =>
-      todo.todo.toLowerCase().includes(state.searchField)
-    );
+  //   const filteredToDos = state.toDos?.filter((todo) =>
+  //     todo.todo.toLowerCase().includes(state.searchField)
+  //   );
 
-    if (state.selectedResource === "Posts") {
-      return (
-        <>
-          <Row>
-            {filteredPosts.map((post, index) => (
-              <Col sm={3} key={index}>
-                <div className="holder">
-                  <Card className="h-100">
-                    <Card.Img
-                      variant="top"
-                      alt="Card image cap"
-                      src={getPostImage(index)}
-                      style={{ height: "200px" }}
-                    />
-                    <Card.Body style={{ height: "200px" }}>
-                      <Card.Title className="fw-bold text-center">
-                        Post:{post.id}
-                      </Card.Title>
-                      <Card.Text>
-                        Title: {post.title} Views: {post.views}
-                      </Card.Text>
-                      <Link to={`/post/${post.id}`} className="link-dark">
-                        Post Details
-                      </Link>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </>
-      );
-    } else if (state.selectedResource === "ToDos") {
-      return (
-        <>
-          <Row>
-            {filteredToDos.map((todo, index) => (
-              <Col sm={3} key={index}>
-                <div className="holder">
-                  <Card className="h-100">
-                    <Card.Img
-                      variant="top"
-                      src={getTodoImage(index)}
-                      style={{ height: "200px" }}
-                    />
-                    <Card.Body style={{ height: "200px" }}>
-                      <Card.Title className="fw-bold text-center">
-                        ToDo:{todo.id}
-                      </Card.Title>
-                      <Card.Text>Title: {todo.todo}</Card.Text>
-                      <Link to={`/todo/${todo.id}`} className="link-dark">
-                        ToDo Details
-                      </Link>
-                    </Card.Body>
-                  </Card>
-                </div>
-              </Col>
-            ))}
-          </Row>
-        </>
-      );
-    }
-  };
+  //   if (state.selectedResource === "Posts") {
+  //     return (
+  //       <>
+  //         <Row>
+  //           {filteredPosts.map((post, index) => (
+  //             <Col sm={3} key={index}>
+  //               <div className="holder">
+  //                 <Card className="h-100">
+  //                   <Card.Img
+  //                     variant="top"
+  //                     alt="Card image cap"
+  //                     src={getPostImage(index)}
+  //                     style={{ height: "200px" }}
+  //                   />
+  //                   <Card.Body style={{ height: "200px" }}>
+  //                     <Card.Title className="fw-bold text-center">
+  //                       Post:{post.id}
+  //                     </Card.Title>
+  //                     <Card.Text>
+  //                       Title: {post.title} Views: {post.views}
+  //                     </Card.Text>
+  //                     <Link to={`/post/${post.id}`} className="link-dark">
+  //                       Post Details
+  //                     </Link>
+  //                   </Card.Body>
+  //                 </Card>
+  //               </div>
+  //             </Col>
+  //           ))}
+  //         </Row>
+  //       </>
+  //     );
+  //   } else if (state.selectedResource === "ToDos") {
+  //     return (
+  //       <>
+  //         <Row>
+  //           {filteredToDos.map((todo, index) => (
+  //             <Col sm={3} key={index}>
+  //               <div className="holder">
+  //                 <Card className="h-100">
+  //                   <Card.Img
+  //                     variant="top"
+  //                     src={getTodoImage(index)}
+  //                     style={{ height: "200px" }}
+  //                   />
+  //                   <Card.Body style={{ height: "200px" }}>
+  //                     <Card.Title className="fw-bold text-center">
+  //                       ToDo:{todo.id}
+  //                     </Card.Title>
+  //                     <Card.Text>Title: {todo.todo}</Card.Text>
+  //                     <Link to={`/todo/${todo.id}`} className="link-dark">
+  //                       ToDo Details
+  //                     </Link>
+  //                   </Card.Body>
+  //                 </Card>
+  //               </div>
+  //             </Col>
+  //           ))}
+  //         </Row>
+  //       </>
+  //     );
+  //   }
+  // };
 
   const values = {
-    getPosts,
-    getToDos,
-    displayData,
+    // getPosts,
+    // getToDos,
+    // displayData,
     dispatch,
     // getSinglePosts,
     singlePost: state.singlePost,
     singleToDos: state.singleToDos,
-    getSingleToDos,
+    // getSingleToDos,
     currentPage: state.currentPage,
     selectedResource: state.selectedResource,
     searchField: state.searchField,
     searchData,
+    getPostImage,
+    posts: state.posts,
+    toDos: state.toDos,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };
