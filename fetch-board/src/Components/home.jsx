@@ -7,6 +7,8 @@ import Col from "react-bootstrap/Col";
 import { MyContext } from "../context/dataContext";
 import Pagination from "./Pagination";
 import GetPost from "./getPost";
+import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
 
 const options = [
   { label: "Resources", value: 0 },
@@ -23,6 +25,11 @@ const Home = () => {
     // currentPage,
     searchField,
     searchData,
+    getPostImage,
+    getTodoImage,
+    posts,
+    toDos,
+    selectedResource,
   } = useContext(MyContext);
 
   // useEffect(() => {
@@ -46,6 +53,79 @@ const Home = () => {
   //   fetchToDos();
   // }, [currentPage]);
   // console.log("I am searchField", searchField);
+
+  const displayData = () => {
+    const filteredPosts = posts?.filter((post) =>
+      post.title.toLowerCase().includes(searchField)
+    );
+
+    const filteredToDos = toDos?.filter((todo) =>
+      todo.todo.toLowerCase().includes(searchField)
+    );
+
+    if (selectedResource === "Posts") {
+      return (
+        <>
+          <Row>
+            {filteredPosts.map((post, index) => (
+              <Col sm={3} key={index}>
+                <div className="holder">
+                  <Card className="h-100">
+                    <Card.Img
+                      variant="top"
+                      alt="Card image cap"
+                      src={getPostImage(index)}
+                      style={{ height: "200px" }}
+                    />
+                    <Card.Body style={{ height: "200px" }}>
+                      <Card.Title className="fw-bold text-center">
+                        Post:{post.id}
+                      </Card.Title>
+                      <Card.Text>
+                        Title: {post.title} Views: {post.views}
+                      </Card.Text>
+                      <Link to={`/post/${post.id}`} className="link-dark">
+                        Post Details
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </>
+      );
+    } else if (selectedResource === "ToDos") {
+      return (
+        <>
+          <Row>
+            {filteredToDos.map((todo, index) => (
+              <Col sm={3} key={index}>
+                <div className="holder">
+                  <Card className="h-100">
+                    <Card.Img
+                      variant="top"
+                      src={getTodoImage(index)}
+                      style={{ height: "200px" }}
+                    />
+                    <Card.Body style={{ height: "200px" }}>
+                      <Card.Title className="fw-bold text-center">
+                        ToDo:{todo.id}
+                      </Card.Title>
+                      <Card.Text>Title: {todo.todo}</Card.Text>
+                      <Link to={`/todo/${todo.id}`} className="link-dark">
+                        ToDo Details
+                      </Link>
+                    </Card.Body>
+                  </Card>
+                </div>
+              </Col>
+            ))}
+          </Row>
+        </>
+      );
+    }
+  };
 
   return (
     <Container>
@@ -93,10 +173,12 @@ const Home = () => {
               <div className="col-12 main-content p-6">
                 <div className="border border-6 p-3 mt-3">
                   <h3 className="text-decoration-underline">Posts and ToDos</h3>
-                  {/* <div>{displayData()}</div> */}
+
                   <div>
+                    {" "}
                     <GetPost />
                   </div>
+                  <div>{displayData()}</div>
                 </div>
               </div>
               <Pagination />
