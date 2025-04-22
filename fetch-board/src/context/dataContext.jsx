@@ -213,6 +213,7 @@ const MyProvider = ({ children }) => {
     searchField: state.searchField,
     searchData,
     getPostImage,
+    getTodoImage,
     posts: state.posts,
     toDos: state.toDos,
   };

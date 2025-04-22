@@ -9,6 +9,7 @@ import Pagination from "./Pagination";
 import GetPost from "./getPost";
 import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
+import GetToDos from "./getToDos";
 
 const options = [
   { label: "Resources", value: 0 },
@@ -18,11 +19,8 @@ const options = [
 
 const Home = () => {
   const {
-    // getToDos,
-    // displayData,
     state,
     dispatch,
-    // currentPage,
     searchField,
     searchData,
     getPostImage,
@@ -177,6 +175,10 @@ const Home = () => {
                   <div>
                     {" "}
                     <GetPost />
+                  </div>
+                  <div>
+                    {" "}
+                    <GetToDos />
                   </div>
                   <div>{displayData()}</div>
                 </div>
