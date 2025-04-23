@@ -60,11 +60,6 @@ const reducer = (state, { type, payload }) => {
 const MyProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const searchData = (e) => {
-    const searchField = e.target.value;
-    dispatch({ type: "SET_SEARCH_FIELD", payload: searchField });
-  };
-
   const values = {
     dispatch,
     singlePost: state.singlePost,
@@ -72,7 +67,6 @@ const MyProvider = ({ children }) => {
     currentPage: state.currentPage,
     selectedResource: state.selectedResource,
     searchField: state.searchField,
-    searchData,
     posts: state.posts,
     toDos: state.toDos,
   };

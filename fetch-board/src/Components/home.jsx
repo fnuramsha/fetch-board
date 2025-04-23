@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Container from "react-bootstrap/Container";
@@ -18,37 +18,13 @@ const options = [
 ];
 
 const Home = () => {
-  const {
-    state,
-    dispatch,
-    searchField,
-    searchData,
-    posts,
-    toDos,
-    selectedResource,
-  } = useContext(MyContext);
+  const { state, dispatch, posts, toDos, selectedResource, searchField } =
+    useContext(MyContext);
 
-  // useEffect(() => {
-  //   const fetchPosts = async () => {
-  //     console.log("I am current page in useEffect", currentPage);
-  //     const updatedPost = await getPosts(currentPage);
-  //     if (updatedPost && updatedPost.length > 0) {
-  //       dispatch({ type: "SET_POSTS", payload: updatedPost });
-  //     }
-  //   };
-  //   fetchPosts();
-  // }, [currentPage, dispatch]);
-
-  // useEffect(() => {
-  //   const fetchToDos = async () => {
-  //     const updatedToDos = await getToDos(currentPage);
-  //     if (updatedToDos && updatedToDos.length > 0) {
-  //       dispatch({ type: "SET_TODOS", payload: updatedToDos });
-  //     }
-  //   };
-  //   fetchToDos();
-  // }, [currentPage]);
-  // console.log("I am searchField", searchField);
+  const searchData = (e) => {
+    const searchField = e.target.value;
+    dispatch({ type: "SET_SEARCH_FIELD", payload: searchField });
+  };
 
   const getPostImage = (index) => {
     const images = [

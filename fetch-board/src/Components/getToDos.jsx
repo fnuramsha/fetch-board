@@ -19,6 +19,6 @@ const GetToDos = () => {
       }
     };
     fetchToDos();
-  }, [currentPage]);
+  }, [currentPage, dispatch]);
 };
 export default GetToDos;
