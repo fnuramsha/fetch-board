@@ -6,8 +6,8 @@ const Pagination = () => {
   const { dispatch, currentPage } = useContext(MyContext);
 
   const handlePageClick = async (data) => {
-    let currentPage = data.selected;
-    console.log("Pagination", data.selected + 1);
+    let currentPage = data.selected + 1;
+    console.log("Pagination", data.selected);
     dispatch({ type: "SET_CURRENT_PAGE", payload: currentPage });
   };
 
