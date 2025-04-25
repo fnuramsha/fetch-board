@@ -12,13 +12,13 @@ import Card from "react-bootstrap/Card";
 import GetToDos from "./getToDos";
 
 const options = [
-  { label: "Resources", value: 0 },
-  { label: "Posts", value: 1 },
-  { label: "ToDos", value: 2 },
+  { label: "Resources" },
+  { label: "Posts" },
+  { label: "ToDos" },
 ];
 
 const Home = () => {
-  const { state, dispatch, posts, toDos, selectedResource, searchField } =
+  const { dispatch, posts, toDos, selectedResource, searchField } =
     useContext(MyContext);
 
   const searchData = (e) => {
@@ -138,7 +138,7 @@ const Home = () => {
                 <DropdownButton
                   id="dropdown-basic-button"
                   variant="secondary"
-                  title={state?.value || "Resources"}
+                  title={selectedResource || "Resources"}
                 >
                   {options.map((option, index) => (
                     <Dropdown.Item
