@@ -36,8 +36,5 @@ const Breadcrumb = () => {
     </>
   );
 };
-// Define Props
-Breadcrumb.propTypes = {
-  path: PropTypes.string.isRequired,
-};
+
 export default Breadcrumb;
