@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useEffect } from "react";
 import { MyContext } from "../context/dataContext";
 
-const GetToDos = () => {
+const useGetToDos = () => {
   const { dispatch, currentPage } = useContext(MyContext);
 
   const getToDos = async (currentPage) => {
@@ -21,4 +21,4 @@ const GetToDos = () => {
     fetchToDos();
   }, [currentPage, dispatch]);
 };
-export default GetToDos;
+export default useGetToDos;
