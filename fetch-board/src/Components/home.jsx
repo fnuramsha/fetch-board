@@ -8,8 +8,9 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { MyContext } from "../context/dataContext";
 import Pagination from "./Pagination";
-import useGetPosts from "./useGetPosts";
-import useGetToDos from "./useGetToDos";
+import useGetPosts from "../hooks/useGetPosts";
+import useGetToDos from "../hooks/useGetToDos";
+import SearchAndDisplayPosts from "./SearchAndDisplayPosts";
 
 const options = [
   {
@@ -23,16 +24,16 @@ const options = [
   },
 ];
 
-const postImages = [
-  "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=3032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-  "https://img.freepik.com/free-photo/woman-working-from-home-laptop_53876-132032.jpg?semt=ais_hybrid",
-  "https://sm.pcmag.com/t/pcmag_au/news/a/asus-websi/asus-website-lists-laptop-with-intels-first-dedicated-graphi_r4yj.1200.jpg",
-  "https://freerangestock.com/sample/167975/laptop-with-blue-website-homepage-on-the-screen.jpg",
-  "https://cdn.create.vista.com/api/media/small/448994714/stock-photo-unrecognizable-man-working-home",
-  "https://burst.shopifycdn.com/photos/designer-picking-colors-for-website.jpg?width=1000&format=pjpg&exif=0&iptc=0",
-  "https://cdn.pixabay.com/photo/2016/06/28/05/10/laptop-1483974_640.jpg",
-  "https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?cs=srgb&dl=pexels-andrew-2312369.jpg&fm=jpg",
-];
+// const postImages = [
+//   "https://images.unsplash.com/photo-1484788984921-03950022c9ef?q=80&w=3032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+//   "https://img.freepik.com/free-photo/woman-working-from-home-laptop_53876-132032.jpg?semt=ais_hybrid",
+//   "https://sm.pcmag.com/t/pcmag_au/news/a/asus-websi/asus-website-lists-laptop-with-intels-first-dedicated-graphi_r4yj.1200.jpg",
+//   "https://freerangestock.com/sample/167975/laptop-with-blue-website-homepage-on-the-screen.jpg",
+//   "https://cdn.create.vista.com/api/media/small/448994714/stock-photo-unrecognizable-man-working-home",
+//   "https://burst.shopifycdn.com/photos/designer-picking-colors-for-website.jpg?width=1000&format=pjpg&exif=0&iptc=0",
+//   "https://cdn.pixabay.com/photo/2016/06/28/05/10/laptop-1483974_640.jpg",
+//   "https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?cs=srgb&dl=pexels-andrew-2312369.jpg&fm=jpg",
+// ];
 
 const toDoImages = [
   "https://plus.unsplash.com/premium_photo-1683309568772-57011d6c1b7b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dG8lMjBkbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
@@ -58,9 +59,9 @@ const Home = () => {
   };
 
   const displayData = () => {
-    const filteredPosts = posts?.filter((post) =>
-      post.title.toLowerCase().includes(searchField)
-    );
+    // const filteredPosts = posts?.filter((post) =>
+    //   post.title.toLowerCase().includes(searchField)
+    // );
 
     const filteredToDos = toDos?.filter((todo) =>
       todo.todo.toLowerCase().includes(searchField)
@@ -69,7 +70,8 @@ const Home = () => {
     if (selectedResource === "Posts") {
       return (
         <>
-          <Row>
+          <SearchAndDisplayPosts />
+          {/* <Row>
             {" "}
             {filteredPosts.map((post, index) => (
               <Col sm={3} key={index}>
@@ -97,7 +99,7 @@ const Home = () => {
                 </div>
               </Col>
             ))}{" "}
-          </Row>
+          </Row> */}
         </>
       );
     } else if (selectedResource === "ToDos") {
