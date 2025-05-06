@@ -11,6 +11,7 @@ import Pagination from "./Pagination";
 import useGetPosts from "../hooks/useGetPosts";
 import useGetToDos from "../hooks/useGetToDos";
 import SearchAndDisplayPosts from "./SearchAndDisplayPosts";
+import SearchAndDisplayToDos from "./SearchAndDisplayToDos";
 
 const options = [
   {
@@ -35,20 +36,19 @@ const options = [
 //   "https://images.pexels.com/photos/2312369/pexels-photo-2312369.jpeg?cs=srgb&dl=pexels-andrew-2312369.jpg&fm=jpg",
 // ];
 
-const toDoImages = [
-  "https://plus.unsplash.com/premium_photo-1683309568772-57011d6c1b7b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dG8lMjBkbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
-  "https://images.pexels.com/photos/2736499/pexels-photo-2736499.jpeg?cs=srgb&dl=pexels-content-pixie-1405717-2736499.jpg&fm=jpg",
-  "https://media.istockphoto.com/id/2162617977/photo/2025-new-year-resolutions-on-notepad-with-coffee-and-laptop.jpg?s=612x612&w=0&k=20&c=3FZ9R7E6fuP11QpzhGUT4TPvvrNqvwgJXwYOBq-sDVw=",
-  "https://cdn.create.vista.com/api/media/small/273401880/stock-photo-top-view-100-days-check-list-stationery-laptop-smartphone-wooden",
-  "https://media.istockphoto.com/id/1199308486/photo/flatlay-with-hands-typing-on-a-keyboard-of-laptop-white-desk.jpg?s=612x612&w=0&k=20&c=v5S89-I3kL-1AR1HmvbrGyGUKgVeWxFpszdRziIc9hE=",
-  "https://media.istockphoto.com/id/915319208/photo/shopping-list.jpg?s=612x612&w=0&k=20&c=udjKS7pK2RXJUE6rn90ya57VHJS8VOTAhXmsGeiy9wA=",
-  "https://img.freepik.com/premium-photo/efficient-organization-writing-todo-list-notebook_390739-724.jpg?semt=ais_hybrid",
-  "https://img.freepik.com/premium-photo/list-business-schedule-motivational-inspirational-quotes-words-typography-top-view-lettering_21336-6669.jpg",
-];
+// const toDoImages = [
+//   "https://plus.unsplash.com/premium_photo-1683309568772-57011d6c1b7b?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dG8lMjBkbyUyMGxpc3R8ZW58MHx8MHx8fDA%3D",
+//   "https://images.pexels.com/photos/2736499/pexels-photo-2736499.jpeg?cs=srgb&dl=pexels-content-pixie-1405717-2736499.jpg&fm=jpg",
+//   "https://media.istockphoto.com/id/2162617977/photo/2025-new-year-resolutions-on-notepad-with-coffee-and-laptop.jpg?s=612x612&w=0&k=20&c=3FZ9R7E6fuP11QpzhGUT4TPvvrNqvwgJXwYOBq-sDVw=",
+//   "https://cdn.create.vista.com/api/media/small/273401880/stock-photo-top-view-100-days-check-list-stationery-laptop-smartphone-wooden",
+//   "https://media.istockphoto.com/id/1199308486/photo/flatlay-with-hands-typing-on-a-keyboard-of-laptop-white-desk.jpg?s=612x612&w=0&k=20&c=v5S89-I3kL-1AR1HmvbrGyGUKgVeWxFpszdRziIc9hE=",
+//   "https://media.istockphoto.com/id/915319208/photo/shopping-list.jpg?s=612x612&w=0&k=20&c=udjKS7pK2RXJUE6rn90ya57VHJS8VOTAhXmsGeiy9wA=",
+//   "https://img.freepik.com/premium-photo/efficient-organization-writing-todo-list-notebook_390739-724.jpg?semt=ais_hybrid",
+//   "https://img.freepik.com/premium-photo/list-business-schedule-motivational-inspirational-quotes-words-typography-top-view-lettering_21336-6669.jpg",
+// ];
 
 const Home = () => {
-  const { dispatch, posts, toDos, selectedResource, searchField } =
-    useContext(MyContext);
+  const { dispatch, selectedResource, searchField } = useContext(MyContext);
 
   useGetPosts(); //custom hook
   useGetToDos();
@@ -63,9 +63,9 @@ const Home = () => {
     //   post.title.toLowerCase().includes(searchField)
     // );
 
-    const filteredToDos = toDos?.filter((todo) =>
-      todo.todo.toLowerCase().includes(searchField)
-    );
+    // const filteredToDos = toDos?.filter((todo) =>
+    //   todo.todo.toLowerCase().includes(searchField)
+    // );
 
     if (selectedResource === "Posts") {
       return (
@@ -105,7 +105,8 @@ const Home = () => {
     } else if (selectedResource === "ToDos") {
       return (
         <>
-          <Row>
+          <SearchAndDisplayToDos />
+          {/* <Row>
             {" "}
             {filteredToDos.map((todo, index) => (
               <Col sm={3} key={index}>
@@ -129,7 +130,7 @@ const Home = () => {
                 </div>
               </Col>
             ))}{" "}
-          </Row>
+          </Row> */}
         </>
       );
     }
