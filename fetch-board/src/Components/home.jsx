@@ -12,12 +12,7 @@ import SearchAndDisplayPosts from "./SearchAndDisplayPosts";
 import SearchAndDisplayToDos from "./SearchAndDisplayToDos";
 
 const options = [
-  {
-    label: "Resources",
-  },
-  {
-    label: "Posts",
-  },
+  { label: "Posts" },
   {
     label: "ToDos",
   },
@@ -34,14 +29,6 @@ const Home = () => {
     dispatch({ type: "SET_SEARCH_FIELD", payload: searchField });
   };
 
-  const displayData = () => {
-    if (selectedResource === "Posts") {
-      return <SearchAndDisplayPosts />;
-    } else if (selectedResource === "ToDos") {
-      return <SearchAndDisplayToDos />;
-    }
-  };
-
   return (
     <Container>
       <Row className="justify-content-md-center">
@@ -52,7 +39,7 @@ const Home = () => {
                 <DropdownButton
                   id="dropdown-basic-button"
                   variant="secondary"
-                  title={selectedResource || "Resources"}
+                  title={selectedResource || "Posts"}
                 >
                   {options.map((option, index) => (
                     <Dropdown.Item
@@ -61,8 +48,7 @@ const Home = () => {
                         dispatch({ type: "SET_OPTION", payload: option.label });
                       }}
                     >
-                      {" "}
-                      {option.label}{" "}
+                      {option.label}
                     </Dropdown.Item>
                   ))}{" "}
                 </DropdownButton>
@@ -85,8 +71,11 @@ const Home = () => {
               <div className="col-12 main-content p-6">
                 <div className="border border-6 p-3 mt-3">
                   <h3 className="text-decoration-underline">Posts and ToDos</h3>
-
-                  <div>{displayData()}</div>
+                  {selectedResource === "ToDos" ? (
+                    <SearchAndDisplayToDos />
+                  ) : (
+                    <SearchAndDisplayPosts />
+                  )}
                 </div>
               </div>
               <Pagination />
