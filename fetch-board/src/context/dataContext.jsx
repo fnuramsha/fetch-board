@@ -13,6 +13,8 @@ const initialState = {
   paginatedItems: [],
   currentPage: 1,
   searchField: "",
+  isLogin: false,
+  userName: "",
 };
 
 const reducer = (state, { type, payload }) => {
@@ -52,6 +54,16 @@ const reducer = (state, { type, payload }) => {
         ...state,
         searchField: payload,
       };
+    case "SET_LOGIN":
+      return {
+        ...state,
+        isLogin: payload,
+      };
+    case "SET_USERNAME":
+      return {
+        ...state,
+        userName: payload,
+      };
     default:
       return state;
   }
@@ -69,6 +81,8 @@ const MyProvider = ({ children }) => {
     searchField: state.searchField,
     posts: state.posts,
     toDos: state.toDos,
+    isLogin: state.isLogin,
+    userName: state.userName,
   };
   return <MyContext.Provider value={values}>{children} </MyContext.Provider>;
 };

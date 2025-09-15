@@ -1,4 +1,15 @@
+import { useContext } from "react";
+import { MyContext } from "../context/dataContext";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
+  const navigate = useNavigate();
+  const { dispatch } = useContext(MyContext);
+
+  const checkLogin = () => {
+    dispatch({ type: "SET_LOGIN", payload: true });
+  };
+
   return (
     <>
       <form>
@@ -18,8 +29,10 @@ const Login = () => {
             placeholder="password"
           />
         </div>
-
-        <button type="button"> Submit </button>
+        <button type="button" onClick={() => navigate("/")}>
+          {" "}
+          Submit{" "}
+        </button>
       </form>
     </>
   );
