@@ -10,6 +10,7 @@ import useGetPosts from "../hooks/useGetPosts";
 import useGetToDos from "../hooks/useGetToDos";
 import SearchAndDisplayPosts from "./SearchAndDisplayPosts";
 import SearchAndDisplayToDos from "./SearchAndDisplayToDos";
+import AuthForm from "./AuthForm";
 
 const options = [
   { label: "Posts" },
@@ -32,7 +33,7 @@ const Home = () => {
   return (
     <Container>
       <Row className="justify-content-md-center">
-        <Col>
+        <Col className="g-3 d-flex">
           <div className="vh-100">
             <div className="position-absolute top-0 start-0 w-100 h-100 p-5">
               <div className="d-flex gap-2">
@@ -67,7 +68,9 @@ const Home = () => {
                     </button>
                   </form>
                 </div>
+                <AuthForm />
               </div>
+
               <div className="col-12 main-content p-6">
                 <div className="border border-6 p-3 mt-3">
                   <h3 className="text-decoration-underline">Posts and ToDos</h3>
