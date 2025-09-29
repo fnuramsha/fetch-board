@@ -6,6 +6,7 @@ import Post from "./Components/PostDetails";
 import ToDos from "./Components/ToDosDetails";
 import Login from "./components/Login";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import SignUp from "./components/SignUp";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/todo/:id" element={<ToDos />} />
         </Route>
         <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
     </>
   );

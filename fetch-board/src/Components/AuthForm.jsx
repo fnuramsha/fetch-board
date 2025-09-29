@@ -20,7 +20,9 @@ const AuthForm = () => {
               Login{" "}
             </button>
           )}
-          <button type="button">SignUp</button>
+          <button type="button" onClick={() => navigate("/SignUp")}>
+            SignUp
+          </button>
         </div>
       </Container>
     </>

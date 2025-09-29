@@ -1,34 +1,21 @@
-import { useContext } from "react";
-import { MyContext } from "../context/dataContext";
 import { useNavigate } from "react-router-dom";
-
-const Login = () => {
+const SignUp = () => {
   const navigate = useNavigate();
-  const { dispatch, userName } = useContext(MyContext);
-
-  const checkUserName = (e) => {
-    const userName = e.target.value;
-    dispatch({ type: "SET_USERNAME", payload: userName });
-  };
-
   return (
     <>
       <form>
         <div className="form-group">
-          <label>Username</label>
+          <label>Full Name</label>
           <input
             type="text"
             className="form-control mb-3"
-            placeholder="Username"
-            value={userName}
-            onChange={checkUserName}
+            placeholder="Full Name"
           />
         </div>
-
         <div className="form-group">
           <label>Email</label>
           <input
-            type="email"
+            type="text"
             className="form-control mb-3"
             placeholder="Email"
           />
@@ -36,27 +23,30 @@ const Login = () => {
         <div className="form-group">
           <label>Password</label>
           <input
-            type="password"
+            type="text"
             className="form-control mb-3"
-            placeholder="password"
+            placeholder="Password"
           />
         </div>
-        <button
-          type="button"
-          onClick={() => {
-            dispatch({ type: "SET_LOGIN", payload: true });
-            navigate("/");
-          }}
-        >
+        <div className="form-group">
+          <label>Confirm Password</label>
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Confirm Password"
+          />
+        </div>
+        <button type="button" onClick={() => navigate("/")}>
           {" "}
           Submit{" "}
         </button>
         <button type="button" onClick={() => navigate("/")}>
-          Back
+          {" "}
+          Back{" "}
         </button>
       </form>
     </>
   );
 };
 
-export default Login;
+export default SignUp;
