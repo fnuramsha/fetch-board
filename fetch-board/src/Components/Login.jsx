@@ -4,15 +4,27 @@ import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { dispatch } = useContext(MyContext);
+  const { dispatch, userName } = useContext(MyContext);
 
-  const checkLogin = () => {
-    dispatch({ type: "SET_LOGIN", payload: true });
+  const checkUserName = (e) => {
+    const userName = e.target.value;
+    dispatch({ type: "SET_USERNAME", payload: userName });
   };
 
   return (
     <>
       <form>
+        <div className="form-group">
+          <label>Username</label>
+          <input
+            type="text"
+            className="form-control mb-3"
+            placeholder="Username"
+            value={userName}
+            onChange={checkUserName}
+          />
+        </div>
+
         <div className="form-group">
           <label>Email</label>
           <input
@@ -29,7 +41,13 @@ const Login = () => {
             placeholder="password"
           />
         </div>
-        <button type="button" onClick={() => navigate("/")}>
+        <button
+          type="button"
+          onClick={() => {
+            dispatch({ type: "SET_LOGIN", payload: true });
+            navigate("/");
+          }}
+        >
           {" "}
           Submit{" "}
         </button>

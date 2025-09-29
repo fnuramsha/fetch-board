@@ -5,6 +5,7 @@ import Breadcrumb from "./Components/Breadcrumb";
 import Post from "./Components/PostDetails";
 import ToDos from "./Components/ToDosDetails";
 import Login from "./components/Login";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
       <Breadcrumb />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/post/:id" element={<Post />} />
-        <Route path="/todo/:id" element={<ToDos />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/post/:id" element={<Post />} />
+          <Route path="/todo/:id" element={<ToDos />} />
+        </Route>
         <Route path="/login" element={<Login />} />
       </Routes>
     </>
